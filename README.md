@@ -1,8 +1,12 @@
 # Cold-Chain Shipment Records – RDF Knowledge Graph
 
+[![validate](https://github.com/Suhas29wasnotavailable/cold-chain-rdf-knowledge-graph/actions/workflows/validate.yml/badge.svg)](https://github.com/Suhas29wasnotavailable/cold-chain-rdf-knowledge-graph/actions/workflows/validate.yml)
+
 **CSE4007 Semantic Web – Option 2: From Case Description to Turtle – Case 2A: Cold-Chain Shipment Records**
 
 An RDF graph with a small RDFS vocabulary for vaccine shipments (S101, S102), refrigerated containers (C7, C8), temperature sensors (T91, T92), timed readings, products (Vaccine-A, Vaccine-B) with permitted temperature ranges, warehouses (Bengaluru-North, Mysuru-Central), a carrier, and dispatch/arrival events. All data is fictional.
+
+![S101 subgraph: shipment, container, sensor readings, product and warehouses](figures/s101_subgraph.png)
 
 ## Files
 
