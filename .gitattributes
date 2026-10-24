@@ -1,0 +1,3 @@
+*.ttl linguist-language=Turtle
+*.rq linguist-language=SPARQL
+report/*.html linguist-documentation
