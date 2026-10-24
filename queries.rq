@@ -1,0 +1,134 @@
+# Cold-Chain Shipment Records - SPARQL queries
+# CSE4007 Semantic Web - Option 2, Case 2A
+#
+# Each query is separated by a line "#### Qn". validate.py runs all of
+# them with rdflib. To run them in GraphDB, copy the PREFIX block
+# together with one query into the SPARQL tab (repository ruleset:
+# RDFS (Optimized); use the "Include inferred" >> toggle for Q7).
+
+PREFIX cc:   <http://example.org/coldchain/vocab#>
+PREFIX shp:  <http://example.org/coldchain/id/shipment/>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+#### Q1 Triple count
+# Expected: 334 explicit triples.
+SELECT (COUNT(*) AS ?triples) WHERE { ?s ?p ?o }
+
+#### Q2 CQ1 - What does each shipment carry, in which container, with which carrier, and who is responsible?
+# Expected: 2 rows (S101: Vaccine-A in C7; S102: Vaccine-B in C8; both FrostLine).
+SELECT ?shipment ?product ?lot ?doses ?container ?carrier ?responsible WHERE {
+  ?s a cc:Shipment ;
+     cc:code ?shipment ;
+     cc:containsLot ?l ;
+     cc:transportedIn/cc:code ?container ;
+     cc:carriedBy/rdfs:label ?carrier ;
+     cc:responsibleWarehouse/rdfs:label ?responsible .
+  ?l cc:lotNumber ?lot ;
+     cc:doseCount ?doses ;
+     cc:ofProduct/rdfs:label ?product .
+}
+ORDER BY ?shipment
+
+#### Q3 CQ2 - What temperature range must each shipment be kept within?
+# The range belongs to the product type, and is reached through the lot.
+# Expected: S101 2.0..8.0, S102 -25.0..-15.0 (unit DEG_C).
+SELECT ?shipment ?product ?min ?max ?unit WHERE {
+  ?s cc:code ?shipment ;
+     cc:containsLot/cc:ofProduct ?p .
+  ?p rdfs:label ?product ;
+     cc:requiredRange ?r .
+  ?r cc:minTemperature ?min ;
+     cc:maxTemperature ?max ;
+     cc:temperatureUnit ?unit .
+}
+ORDER BY ?shipment
+
+#### Q4 CQ3 - Which readings taken DURING transit were outside the permitted range?
+# A reading belongs to a shipment if it was taken in that shipment's
+# container between its dispatch and arrival times.
+# Expected: 1 row - S101, sensor T91, 11:00, 9.4 C (max 8.0).
+# The 07:30 reading of 1.6 C is below range but is excluded: it was
+# taken before dispatch (pre-cooling), not during transit.
+SELECT ?shipment ?sensor ?time ?value ?min ?max WHERE {
+  ?s cc:code ?shipment ;
+     cc:transportedIn ?c ;
+     cc:containsLot/cc:ofProduct/cc:requiredRange ?r .
+  ?r cc:minTemperature ?min ; cc:maxTemperature ?max .
+  ?d a cc:DispatchEvent ; cc:eventOf ?s ; cc:eventTime ?t0 .
+  ?a a cc:ArrivalEvent  ; cc:eventOf ?s ; cc:eventTime ?t1 .
+  ?o cc:observedContainer ?c ;
+     cc:madeBySensor/cc:code ?sensor ;
+     cc:resultTime ?time ;
+     cc:celsiusValue ?value .
+  FILTER (?time >= ?t0 && ?time <= ?t1)
+  FILTER (?value < ?min || ?value > ?max)
+}
+ORDER BY ?time
+
+#### Q5 CQ4 - When was each shipment dispatched and when did it arrive, and from where to where?
+# Expected: S101 BLR-N 08:00 -> MYS-C 12:30; S102 MYS-C 07:30 -> BLR-N 11:45.
+SELECT ?shipment ?from ?dispatched ?to ?arrived WHERE {
+  ?s cc:code ?shipment .
+  ?d a cc:DispatchEvent ; cc:eventOf ?s ; cc:eventTime ?dispatched ;
+     cc:atFacility/rdfs:label ?from .
+  ?a a cc:ArrivalEvent  ; cc:eventOf ?s ; cc:eventTime ?arrived ;
+     cc:atFacility/rdfs:label ?to .
+}
+ORDER BY ?shipment
+
+#### Q6 CQ5 - Which sensor monitored each shipment's container, when was it calibrated, and how many readings did it give?
+# Expected: S101 C7 T91 2026-08-14 5 readings; S102 C8 T92 2026-09-02 3 readings.
+SELECT ?shipment ?container ?sensor ?calibrated (COUNT(?o) AS ?readings) WHERE {
+  ?s cc:code ?shipment ;
+     cc:transportedIn ?c .
+  ?c cc:code ?container ;
+     cc:fittedWith ?t .
+  ?t cc:code ?sensor ;
+     cc:lastCalibrated ?calibrated .
+  ?o cc:madeBySensor ?t .
+}
+GROUP BY ?shipment ?container ?sensor ?calibrated
+ORDER BY ?shipment
+
+#### Q7 CQ6 - Which resources are logistics events, facilities, and SOSA observations? (RDFS inference)
+# No resource is typed directly with cc:LogisticsEvent, cc:Facility or sosa:Observation.
+# Expected: 0 rows without inference; 14 rows with RDFS inference
+# (4 events via rdfs:subClassOf, 2 warehouses as facilities,
+#  8 readings as sosa:Observation).
+SELECT ?class ?resource WHERE {
+  VALUES ?class { cc:LogisticsEvent cc:Facility sosa:Observation }
+  ?resource a ?class .
+}
+ORDER BY ?class ?resource
+
+#### Q8 Validation - Data-quality checks (each must return 0 rows)
+# (a) arrival not after dispatch, (b) shipment missing a dispatch or arrival,
+# (c) observation without sensor, container, time or value,
+# (d) range with min >= max.
+SELECT ?problem ?thing WHERE {
+  {
+    ?d a cc:DispatchEvent ; cc:eventOf ?thing ; cc:eventTime ?t0 .
+    ?a a cc:ArrivalEvent  ; cc:eventOf ?thing ; cc:eventTime ?t1 .
+    FILTER (?t1 <= ?t0)
+    BIND ("arrival not after dispatch" AS ?problem)
+  } UNION {
+    ?thing a cc:Shipment .
+    FILTER NOT EXISTS { ?e a cc:DispatchEvent ; cc:eventOf ?thing }
+    BIND ("no dispatch event" AS ?problem)
+  } UNION {
+    ?thing a cc:Shipment .
+    FILTER NOT EXISTS { ?e a cc:ArrivalEvent ; cc:eventOf ?thing }
+    BIND ("no arrival event" AS ?problem)
+  } UNION {
+    ?thing a cc:TemperatureObservation .
+    FILTER NOT EXISTS { ?thing cc:madeBySensor ?x1 ; cc:observedContainer ?x2 ;
+                               cc:resultTime ?x3 ; cc:celsiusValue ?x4 }
+    BIND ("incomplete observation" AS ?problem)
+  } UNION {
+    ?thing cc:minTemperature ?lo ; cc:maxTemperature ?hi .
+    FILTER (?lo >= ?hi)
+    BIND ("min not below max" AS ?problem)
+  }
+}

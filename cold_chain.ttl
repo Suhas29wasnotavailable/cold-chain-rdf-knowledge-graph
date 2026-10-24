@@ -1,0 +1,472 @@
+#################################################################
+#  Cold-Chain Shipment Records - RDF graph and RDFS vocabulary
+#  CSE4007 Semantic Web - Option 2 (Case Description to Turtle)
+#  Case 2A: Cold-Chain Shipment Records
+#
+#  Two namespaces are used on purpose:
+#    cc:   the vocabulary (classes and properties)  .../vocab#
+#    agent:, wh:, shp:, ... the instance data, one IRI path per entity
+#          type:  http://example.org/coldchain/id/<type>/<code>
+#  All organisations, records and readings are fictional.
+#################################################################
+
+@prefix cc:   <http://example.org/coldchain/vocab#> .
+@prefix agent: <http://example.org/coldchain/id/organisation/> .
+@prefix wh:   <http://example.org/coldchain/id/warehouse/> .
+@prefix prod: <http://example.org/coldchain/id/product/> .
+@prefix rng:  <http://example.org/coldchain/id/range/> .
+@prefix lot:  <http://example.org/coldchain/id/lot/> .
+@prefix ctr:  <http://example.org/coldchain/id/container/> .
+@prefix sen:  <http://example.org/coldchain/id/sensor/> .
+@prefix shp:  <http://example.org/coldchain/id/shipment/> .
+@prefix evt:  <http://example.org/coldchain/id/event/> .
+@prefix obs:  <http://example.org/coldchain/id/observation/> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+
+<http://example.org/coldchain/vocab> a owl:Ontology ;
+    rdfs:label "Cold-Chain Shipment Vocabulary"@en ;
+    rdfs:comment "A small RDFS vocabulary for vaccine shipments, containers, sensors, temperature readings, warehouses and delivery events."@en .
+
+#################################################################
+#  1. Classes
+#################################################################
+
+# --- Organisations and places ---------------------------------
+cc:Organisation a rdfs:Class ;
+    rdfs:label "Organisation"@en ;
+    rdfs:comment "A company or body that takes part in the cold chain."@en .
+
+cc:Distributor a rdfs:Class ;
+    rdfs:subClassOf cc:Organisation ;
+    rdfs:label "Distributor"@en ;
+    rdfs:comment "An organisation that owns stock and operates warehouses."@en .
+
+cc:Carrier a rdfs:Class ;
+    rdfs:subClassOf cc:Organisation ;
+    rdfs:label "Carrier"@en ;
+    rdfs:comment "An organisation that physically transports shipments."@en .
+
+cc:Facility a rdfs:Class ;
+    rdfs:label "Facility"@en ;
+    rdfs:comment "A physical site where goods are stored or handled."@en .
+
+cc:Warehouse a rdfs:Class ;
+    rdfs:subClassOf cc:Facility ;
+    rdfs:label "Warehouse"@en ;
+    rdfs:comment "A temperature-controlled storage facility."@en .
+
+# --- Products: type versus physical lot -----------------------
+cc:Product a rdfs:Class ;
+    rdfs:label "Product"@en ;
+    rdfs:comment "A product type as listed in a catalogue (not a physical quantity)."@en .
+
+cc:Vaccine a rdfs:Class ;
+    rdfs:subClassOf cc:Product ;
+    rdfs:label "Vaccine"@en ;
+    rdfs:comment "A vaccine product type with a required storage temperature range."@en .
+
+cc:ProductLot a rdfs:Class ;
+    rdfs:label "Product lot"@en ;
+    rdfs:comment "A physical, manufactured batch of a product, identified by a lot number."@en .
+
+cc:TemperatureRange a rdfs:Class ;
+    rdfs:label "Temperature range"@en ;
+    rdfs:comment "A permitted range with a minimum, a maximum and a unit."@en .
+
+# --- Shipments, containers, sensors ---------------------------
+cc:Shipment a rdfs:Class ;
+    rdfs:label "Shipment"@en ;
+    rdfs:comment "A consignment of one or more product lots moved from an origin to a destination."@en .
+
+cc:Container a rdfs:Class ;
+    rdfs:label "Container"@en ;
+    rdfs:comment "A reusable physical transport unit."@en .
+
+cc:RefrigeratedContainer a rdfs:Class ;
+    rdfs:subClassOf cc:Container ;
+    rdfs:label "Refrigerated container"@en ;
+    rdfs:comment "A container with active cooling."@en .
+
+cc:Sensor a rdfs:Class ;
+    rdfs:subClassOf sosa:Sensor ;
+    rdfs:label "Sensor"@en ;
+    rdfs:comment "A device that produces observations."@en .
+
+cc:TemperatureSensor a rdfs:Class ;
+    rdfs:subClassOf cc:Sensor ;
+    rdfs:label "Temperature sensor"@en ;
+    rdfs:comment "A sensor that records temperature."@en .
+
+# --- Events and observations ----------------------------------
+cc:LogisticsEvent a rdfs:Class ;
+    rdfs:label "Logistics event"@en ;
+    rdfs:comment "Something that happens to a shipment at a place and time."@en .
+
+cc:DispatchEvent a rdfs:Class ;
+    rdfs:subClassOf cc:LogisticsEvent ;
+    rdfs:label "Dispatch event"@en ;
+    rdfs:comment "A shipment leaves its origin facility."@en .
+
+cc:ArrivalEvent a rdfs:Class ;
+    rdfs:subClassOf cc:LogisticsEvent ;
+    rdfs:label "Arrival event"@en ;
+    rdfs:comment "A shipment reaches its destination facility."@en .
+
+cc:TemperatureObservation a rdfs:Class ;
+    rdfs:subClassOf sosa:Observation ;
+    rdfs:label "Temperature observation"@en ;
+    rdfs:comment "A single temperature reading taken by a sensor inside a container at a time."@en .
+
+#################################################################
+#  2. Object properties
+#################################################################
+
+cc:operatedBy a rdf:Property ;
+    rdfs:label "operated by"@en ;
+    rdfs:domain cc:Warehouse ;
+    rdfs:range cc:Distributor .
+
+cc:ofProduct a rdf:Property ;
+    rdfs:label "of product"@en ;
+    rdfs:comment "The product type that a physical lot is an instance of."@en ;
+    rdfs:domain cc:ProductLot ;
+    rdfs:range cc:Product .
+
+cc:requiredRange a rdf:Property ;
+    rdfs:label "required temperature range"@en ;
+    rdfs:domain cc:Product ;
+    rdfs:range cc:TemperatureRange .
+
+cc:temperatureUnit a rdf:Property ;
+    rdfs:label "temperature unit"@en ;
+    rdfs:comment "Unit of the range values, as a QUDT unit IRI."@en ;
+    rdfs:domain cc:TemperatureRange .
+
+cc:containsLot a rdf:Property ;
+    rdfs:label "contains lot"@en ;
+    rdfs:domain cc:Shipment ;
+    rdfs:range cc:ProductLot .
+
+cc:transportedIn a rdf:Property ;
+    rdfs:label "transported in"@en ;
+    rdfs:domain cc:Shipment ;
+    rdfs:range cc:Container .
+
+cc:carriedBy a rdf:Property ;
+    rdfs:label "carried by"@en ;
+    rdfs:domain cc:Shipment ;
+    rdfs:range cc:Carrier .
+
+cc:responsibleWarehouse a rdf:Property ;
+    rdfs:label "responsible warehouse"@en ;
+    rdfs:comment "The warehouse accountable for the shipment's cold-chain record."@en ;
+    rdfs:domain cc:Shipment ;
+    rdfs:range cc:Warehouse .
+
+cc:origin a rdf:Property ;
+    rdfs:label "origin"@en ;
+    rdfs:domain cc:Shipment ;
+    rdfs:range cc:Facility .
+
+cc:destination a rdf:Property ;
+    rdfs:label "destination"@en ;
+    rdfs:domain cc:Shipment ;
+    rdfs:range cc:Facility .
+
+cc:fittedWith a rdf:Property ;
+    rdfs:label "fitted with"@en ;
+    rdfs:comment "A sensor installed in a container."@en ;
+    rdfs:domain cc:Container ;
+    rdfs:range cc:Sensor .
+
+cc:eventOf a rdf:Property ;
+    rdfs:label "event of"@en ;
+    rdfs:domain cc:LogisticsEvent ;
+    rdfs:range cc:Shipment .
+
+cc:atFacility a rdf:Property ;
+    rdfs:label "at facility"@en ;
+    rdfs:domain cc:LogisticsEvent ;
+    rdfs:range cc:Facility .
+
+cc:madeBySensor a rdf:Property ;
+    rdfs:subPropertyOf sosa:madeBySensor ;
+    rdfs:label "made by sensor"@en ;
+    rdfs:domain cc:TemperatureObservation ;
+    rdfs:range cc:Sensor .
+
+cc:observedContainer a rdf:Property ;
+    rdfs:subPropertyOf sosa:hasFeatureOfInterest ;
+    rdfs:label "observed container"@en ;
+    rdfs:comment "The container whose internal temperature was measured."@en ;
+    rdfs:domain cc:TemperatureObservation ;
+    rdfs:range cc:Container .
+
+#################################################################
+#  3. Datatype properties
+#################################################################
+
+cc:name a rdf:Property ;
+    rdfs:label "name"@en ;
+    rdfs:range xsd:string .
+
+cc:code a rdf:Property ;
+    rdfs:label "business code"@en ;
+    rdfs:comment "The identifier used by the business (S101, C7, T91 ...), kept as a literal next to the IRI."@en ;
+    rdfs:range xsd:string .
+
+cc:city a rdf:Property ;
+    rdfs:label "city"@en ;
+    rdfs:domain cc:Facility ;
+    rdfs:range xsd:string .
+
+cc:lotNumber a rdf:Property ;
+    rdfs:label "lot number"@en ;
+    rdfs:domain cc:ProductLot ;
+    rdfs:range xsd:string .
+
+cc:doseCount a rdf:Property ;
+    rdfs:label "dose count"@en ;
+    rdfs:domain cc:ProductLot ;
+    rdfs:range xsd:integer .
+
+cc:expiryDate a rdf:Property ;
+    rdfs:label "expiry date"@en ;
+    rdfs:domain cc:ProductLot ;
+    rdfs:range xsd:date .
+
+cc:minTemperature a rdf:Property ;
+    rdfs:label "minimum temperature"@en ;
+    rdfs:domain cc:TemperatureRange ;
+    rdfs:range xsd:decimal .
+
+cc:maxTemperature a rdf:Property ;
+    rdfs:label "maximum temperature"@en ;
+    rdfs:domain cc:TemperatureRange ;
+    rdfs:range xsd:decimal .
+
+cc:serialNumber a rdf:Property ;
+    rdfs:label "serial number"@en ;
+    rdfs:domain cc:Sensor ;
+    rdfs:range xsd:string .
+
+cc:lastCalibrated a rdf:Property ;
+    rdfs:label "last calibrated"@en ;
+    rdfs:domain cc:Sensor ;
+    rdfs:range xsd:date .
+
+cc:eventTime a rdf:Property ;
+    rdfs:label "event time"@en ;
+    rdfs:domain cc:LogisticsEvent ;
+    rdfs:range xsd:dateTime .
+
+cc:resultTime a rdf:Property ;
+    rdfs:subPropertyOf sosa:resultTime ;
+    rdfs:label "result time"@en ;
+    rdfs:domain cc:TemperatureObservation ;
+    rdfs:range xsd:dateTime .
+
+cc:celsiusValue a rdf:Property ;
+    rdfs:label "value in degrees Celsius"@en ;
+    rdfs:comment "The measured temperature; the unit is fixed by the property name."@en ;
+    rdfs:domain cc:TemperatureObservation ;
+    rdfs:range xsd:decimal .
+
+#################################################################
+#  4. Instance data
+#################################################################
+
+# --- Organisations --------------------------------------------
+agent:medivault a cc:Distributor ;
+    rdfs:label "MediVault Distribution"@en ;
+    cc:name "MediVault Distribution Pvt Ltd" .
+
+agent:frostline a cc:Carrier ;
+    rdfs:label "FrostLine Logistics"@en ;
+    cc:name "FrostLine Logistics" .
+
+# --- Warehouses -----------------------------------------------
+wh:BLR-N a cc:Warehouse ;
+    rdfs:label "Bengaluru-North"@en ;
+    cc:code "BLR-N" ;
+    cc:city "Bengaluru" ;
+    cc:operatedBy agent:medivault .
+
+wh:MYS-C a cc:Warehouse ;
+    rdfs:label "Mysuru-Central"@en ;
+    cc:code "MYS-C" ;
+    cc:city "Mysuru" ;
+    cc:operatedBy agent:medivault .
+
+# --- Products and permitted temperature ranges ----------------
+prod:vaccine-a a cc:Vaccine ;
+    rdfs:label "Vaccine-A"@en ;
+    cc:requiredRange rng:2to8C .
+
+prod:vaccine-b a cc:Vaccine ;
+    rdfs:label "Vaccine-B"@en ;
+    cc:requiredRange rng:minus25to-15C .
+
+rng:2to8C a cc:TemperatureRange ;
+    rdfs:label "Refrigerated, +2 to +8 °C"@en ;
+    cc:minTemperature "2.0"^^xsd:decimal ;
+    cc:maxTemperature "8.0"^^xsd:decimal ;
+    cc:temperatureUnit unit:DEG_C .
+
+rng:minus25to-15C a cc:TemperatureRange ;
+    rdfs:label "Frozen, -25 to -15 °C"@en ;
+    cc:minTemperature "-25.0"^^xsd:decimal ;
+    cc:maxTemperature "-15.0"^^xsd:decimal ;
+    cc:temperatureUnit unit:DEG_C .
+
+# --- Physical lots --------------------------------------------
+lot:VA-2609-01 a cc:ProductLot ;
+    rdfs:label "Lot VA-2609-01"@en ;
+    cc:ofProduct prod:vaccine-a ;
+    cc:lotNumber "VA-2609-01" ;
+    cc:doseCount "2400"^^xsd:integer ;
+    cc:expiryDate "2027-09-30"^^xsd:date .
+
+lot:VB-2609-07 a cc:ProductLot ;
+    rdfs:label "Lot VB-2609-07"@en ;
+    cc:ofProduct prod:vaccine-b ;
+    cc:lotNumber "VB-2609-07" ;
+    cc:doseCount "1500"^^xsd:integer ;
+    cc:expiryDate "2027-03-31"^^xsd:date .
+
+# --- Containers and sensors -----------------------------------
+ctr:C7 a cc:RefrigeratedContainer ;
+    rdfs:label "Container C7"@en ;
+    cc:code "C7" ;
+    cc:fittedWith sen:T91 .
+
+ctr:C8 a cc:RefrigeratedContainer ;
+    rdfs:label "Container C8"@en ;
+    cc:code "C8" ;
+    cc:fittedWith sen:T92 .
+
+sen:T91 a cc:TemperatureSensor ;
+    rdfs:label "Sensor T91"@en ;
+    cc:code "T91" ;
+    cc:serialNumber "TS-91-44871" ;
+    cc:lastCalibrated "2026-08-14"^^xsd:date .
+
+sen:T92 a cc:TemperatureSensor ;
+    rdfs:label "Sensor T92"@en ;
+    cc:code "T92" ;
+    cc:serialNumber "TS-92-44902" ;
+    cc:lastCalibrated "2026-09-02"^^xsd:date .
+
+# --- Shipments ------------------------------------------------
+shp:S101 a cc:Shipment ;
+    rdfs:label "Shipment S101"@en ;
+    cc:code "S101" ;
+    cc:containsLot lot:VA-2609-01 ;
+    cc:transportedIn ctr:C7 ;
+    cc:carriedBy agent:frostline ;
+    cc:origin wh:BLR-N ;
+    cc:destination wh:MYS-C ;
+    cc:responsibleWarehouse wh:BLR-N .
+
+shp:S102 a cc:Shipment ;
+    rdfs:label "Shipment S102"@en ;
+    cc:code "S102" ;
+    cc:containsLot lot:VB-2609-07 ;
+    cc:transportedIn ctr:C8 ;
+    cc:carriedBy agent:frostline ;
+    cc:origin wh:MYS-C ;
+    cc:destination wh:BLR-N ;
+    cc:responsibleWarehouse wh:MYS-C .
+
+# --- Dispatch and arrival events ------------------------------
+evt:S101-dispatch a cc:DispatchEvent ;
+    rdfs:label "S101 dispatched from Bengaluru-North"@en ;
+    cc:eventOf shp:S101 ;
+    cc:atFacility wh:BLR-N ;
+    cc:eventTime "2026-10-05T08:00:00+05:30"^^xsd:dateTime .
+
+evt:S101-arrival a cc:ArrivalEvent ;
+    rdfs:label "S101 arrived at Mysuru-Central"@en ;
+    cc:eventOf shp:S101 ;
+    cc:atFacility wh:MYS-C ;
+    cc:eventTime "2026-10-05T12:30:00+05:30"^^xsd:dateTime .
+
+evt:S102-dispatch a cc:DispatchEvent ;
+    rdfs:label "S102 dispatched from Mysuru-Central"@en ;
+    cc:eventOf shp:S102 ;
+    cc:atFacility wh:MYS-C ;
+    cc:eventTime "2026-10-06T07:30:00+05:30"^^xsd:dateTime .
+
+evt:S102-arrival a cc:ArrivalEvent ;
+    rdfs:label "S102 arrived at Bengaluru-North"@en ;
+    cc:eventOf shp:S102 ;
+    cc:atFacility wh:BLR-N ;
+    cc:eventTime "2026-10-06T11:45:00+05:30"^^xsd:dateTime .
+
+# --- Temperature readings -------------------------------------
+# Readings are attached to the sensor and the container, not to the
+# shipment. Which shipment a reading belongs to is worked out from the
+# dispatch/arrival time window (see queries.rq, Q4).
+
+# Container C7 / sensor T91 (carrying S101, Vaccine-A, +2..+8 °C)
+obs:T91-20261005T0730 a cc:TemperatureObservation ;
+    rdfs:label "T91 reading 07:30 (pre-cooling)"@en ;
+    cc:madeBySensor sen:T91 ;
+    cc:observedContainer ctr:C7 ;
+    cc:resultTime "2026-10-05T07:30:00+05:30"^^xsd:dateTime ;
+    cc:celsiusValue "1.6"^^xsd:decimal .
+
+obs:T91-20261005T0900 a cc:TemperatureObservation ;
+    rdfs:label "T91 reading 09:00"@en ;
+    cc:madeBySensor sen:T91 ;
+    cc:observedContainer ctr:C7 ;
+    cc:resultTime "2026-10-05T09:00:00+05:30"^^xsd:dateTime ;
+    cc:celsiusValue "4.2"^^xsd:decimal .
+
+obs:T91-20261005T1000 a cc:TemperatureObservation ;
+    rdfs:label "T91 reading 10:00"@en ;
+    cc:madeBySensor sen:T91 ;
+    cc:observedContainer ctr:C7 ;
+    cc:resultTime "2026-10-05T10:00:00+05:30"^^xsd:dateTime ;
+    cc:celsiusValue "5.1"^^xsd:decimal .
+
+obs:T91-20261005T1100 a cc:TemperatureObservation ;
+    rdfs:label "T91 reading 11:00"@en ;
+    cc:madeBySensor sen:T91 ;
+    cc:observedContainer ctr:C7 ;
+    cc:resultTime "2026-10-05T11:00:00+05:30"^^xsd:dateTime ;
+    cc:celsiusValue "9.4"^^xsd:decimal .
+
+obs:T91-20261005T1200 a cc:TemperatureObservation ;
+    rdfs:label "T91 reading 12:00"@en ;
+    cc:madeBySensor sen:T91 ;
+    cc:observedContainer ctr:C7 ;
+    cc:resultTime "2026-10-05T12:00:00+05:30"^^xsd:dateTime ;
+    cc:celsiusValue "6.0"^^xsd:decimal .
+
+# Container C8 / sensor T92 (carrying S102, Vaccine-B, -25..-15 °C)
+obs:T92-20261006T0800 a cc:TemperatureObservation ;
+    rdfs:label "T92 reading 08:00"@en ;
+    cc:madeBySensor sen:T92 ;
+    cc:observedContainer ctr:C8 ;
+    cc:resultTime "2026-10-06T08:00:00+05:30"^^xsd:dateTime ;
+    cc:celsiusValue "-20.4"^^xsd:decimal .
+
+obs:T92-20261006T0930 a cc:TemperatureObservation ;
+    rdfs:label "T92 reading 09:30"@en ;
+    cc:madeBySensor sen:T92 ;
+    cc:observedContainer ctr:C8 ;
+    cc:resultTime "2026-10-06T09:30:00+05:30"^^xsd:dateTime ;
+    cc:celsiusValue "-18.7"^^xsd:decimal .
+
+obs:T92-20261006T1100 a cc:TemperatureObservation ;
+    rdfs:label "T92 reading 11:00"@en ;
+    cc:madeBySensor sen:T92 ;
+    cc:observedContainer ctr:C8 ;
+    cc:resultTime "2026-10-06T11:00:00+05:30"^^xsd:dateTime ;
+    cc:celsiusValue "-19.9"^^xsd:decimal .
