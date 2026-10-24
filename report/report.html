@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Cold-Chain Shipment Records</title>
+<style>
+  @page { size: A4; margin: 16mm 16mm 16mm 16mm; }
+  body { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 10.2pt; line-height: 1.38; color: #111; background: #fff; }
+  h1 { font-size: 17pt; margin: 0 0 2px; }
+  h2 { font-size: 12.5pt; margin: 14px 0 5px; border-bottom: 1px solid #999; padding-bottom: 2px; }
+  h3 { font-size: 10.6pt; margin: 9px 0 3px; }
+  p { margin: 4px 0 6px; }
+  .sub { color: #444; margin-bottom: 8px; }
+  .meta { border: 1px solid #bbb; padding: 6px 9px; margin: 8px 0 10px; font-size: 9.6pt; }
+  table { border-collapse: collapse; width: 100%; margin: 5px 0 8px; font-size: 9pt; }
+  th, td { border: 1px solid #aaa; padding: 3px 5px; vertical-align: top; text-align: left; }
+  th { background: #eee; }
+  code, .mono { font-family: Menlo, Consolas, monospace; font-size: 8.6pt; }
+  pre { font-family: Menlo, Consolas, monospace; font-size: 8.2pt; background: #f5f5f5; border: 1px solid #ddd; padding: 6px 8px; margin: 5px 0 8px; white-space: pre-wrap; }
+  ul, ol { margin: 3px 0 6px 18px; padding: 0; }
+  li { margin: 2px 0; }
+  figure { margin: 6px 0; text-align: center; }
+  figure img { width: 100%; }
+  figcaption { font-size: 9pt; color: #333; }
+  .page-break { page-break-before: always; }
+  .avoid { page-break-inside: avoid; }
+</style>
+</head>
+<body>
+
+<h1>Cold-Chain Shipment Records as an RDF Graph</h1>
+<div class="sub">CSE4007 Semantic Web · Continuous Assessment · Option 2 (From Case Description to Turtle) · Case 2A</div>
+<div class="meta">
+  <b>Name:</b> Suhas Srivathsasa Y &nbsp;&nbsp; <b>Section:</b> AI-A<br>
+  <b>Files:</b> <code>cold_chain.ttl</code> (vocabulary + data, 334 triples), <code>queries.rq</code> (8 SPARQL queries),
+  <code>validate.py</code>, <code>draw_graph.py</code>, <code>results.txt</code>, <code>figures/s101_subgraph.png</code>, <code>README.md</code>
+</div>
+
+<h2>1. Problem, purpose and scope</h2>
+<p>A vaccine distributor moves shipments between its warehouses in refrigerated containers. Each container carries a temperature
+sensor that logs readings during the trip. Today these records live in separate systems: a shipment sheet, the sensor logger's export,
+and product data sheets that state the permitted temperature range. Answering a simple question such as <i>"Did shipment S101 stay
+within its required range while it was in transit?"</i> means joining all three by hand.</p>
+<p><b>Purpose.</b> Describe shipments, containers, sensors, readings, products, warehouses, carriers and dispatch/arrival events as one
+machine-readable RDF graph with a small RDFS vocabulary, so the question above can be answered with a single query and the data can
+be exchanged with other systems.</p>
+<p><b>Scope.</b> In scope: the case entities (shipments S101–S102, containers C7–C8, sensors T91–T92, products Vaccine-A/B, warehouses
+Bengaluru-North and Mysuru-Central, dispatch and arrival events, timed readings, permitted ranges, carrier and responsible warehouse).
+I added realistic fictional details: one distributor (MediVault), one carrier (FrostLine), one physical lot per shipment with lot number,
+dose count and expiry date, sensor serial numbers and calibration dates. Out of scope: routing and GPS, people and drivers, regulatory
+documents, pricing, and any real organisation or medical guidance. All values are fictional.</p>
+
+<h3>Competency questions</h3>
+<table>
+<tr><th>#</th><th>Competency question</th><th>Answered by</th></tr>
+<tr><td>CQ1</td><td>What does each shipment carry (product, lot, doses), in which container, with which carrier, and which warehouse is responsible?</td><td>Q2</td></tr>
+<tr><td>CQ2</td><td>What temperature range must each shipment be kept within?</td><td>Q3</td></tr>
+<tr><td>CQ3</td><td>Which readings taken <i>during transit</i> fell outside the permitted range?</td><td>Q4</td></tr>
+<tr><td>CQ4</td><td>When and where was each shipment dispatched, and when and where did it arrive?</td><td>Q5</td></tr>
+<tr><td>CQ5</td><td>Which sensor monitored each shipment's container, when was it last calibrated, and how many readings did it give?</td><td>Q6</td></tr>
+<tr><td>CQ6</td><td>Which resources are logistics events, facilities or (SOSA) observations, even though none is typed that way directly?</td><td>Q7 (RDFS inference)</td></tr>
+</table>
+
+<h2>2. Namespaces and IRIs</h2>
+<p>The vocabulary and the data live in separate namespaces. Vocabulary terms use <code>cc: &lt;http://example.org/coldchain/vocab#&gt;</code>.
+Every instance gets a path IRI <code>http://example.org/coldchain/id/&lt;type&gt;/&lt;code&gt;</code>, with one prefix per type, for
+example <code>shp:S101</code>, <code>ctr:C7</code>, <code>sen:T91</code>, <code>wh:BLR-N</code>, <code>lot:VA-2609-01</code>,
+<code>evt:S101-dispatch</code> and <code>obs:T91-20261005T1100</code>. IRIs are built only from stable business codes. Names and labels
+can change without breaking links. The code is also kept as a literal (<code>cc:code "S101"</code>) for display and for joining with
+the source systems. Two external vocabularies are reused: <b>SOSA</b> (W3C Sensor, Observation, Sample and Actuator) and
+<b>QUDT</b> units (<code>unit:DEG_C</code>). <code>example.org</code> is a placeholder domain. A real deployment would use an
+IRI space the company controls.</p>
+
+<h2>3. RDFS vocabulary</h2>
+<p>The vocabulary declares 18 classes and 28 properties. Every property has an <code>rdfs:label</code> and a domain and/or range.
+Literals use typed values: <code>xsd:decimal</code> for temperatures, <code>xsd:dateTime</code> with a +05:30 offset for event and
+reading times, <code>xsd:date</code> for expiry and calibration dates, and <code>xsd:integer</code> for dose counts.</p>
+<table class="avoid">
+<tr><th style="width:32%">Class hierarchy (rdfs:subClassOf)</th><th>Object properties (domain → range)</th><th>Datatype properties</th></tr>
+<tr>
+<td class="mono">Organisation<br>&nbsp;├ Distributor<br>&nbsp;└ Carrier<br>Facility<br>&nbsp;└ Warehouse<br>Product<br>&nbsp;└ Vaccine<br>ProductLot<br>TemperatureRange<br>Shipment<br>Container<br>&nbsp;└ RefrigeratedContainer<br>sosa:Sensor<br>&nbsp;└ Sensor<br>&nbsp;&nbsp;&nbsp;└ TemperatureSensor<br>LogisticsEvent<br>&nbsp;├ DispatchEvent<br>&nbsp;└ ArrivalEvent<br>sosa:Observation<br>&nbsp;└ TemperatureObservation</td>
+<td class="mono">containsLot  Shipment → ProductLot<br>ofProduct  ProductLot → Product<br>requiredRange  Product → TemperatureRange<br>transportedIn  Shipment → Container<br>carriedBy  Shipment → Carrier<br>origin / destination  Shipment → Facility<br>responsibleWarehouse  Shipment → Warehouse<br>operatedBy  Warehouse → Distributor<br>fittedWith  Container → Sensor<br>eventOf  LogisticsEvent → Shipment<br>atFacility  LogisticsEvent → Facility<br>madeBySensor  TempObs → Sensor<br>&nbsp;&nbsp;⊑ sosa:madeBySensor<br>observedContainer  TempObs → Container<br>&nbsp;&nbsp;⊑ sosa:hasFeatureOfInterest<br>temperatureUnit  TemperatureRange → (QUDT unit)</td>
+<td class="mono">name, code (xsd:string)<br>city  Facility<br>lotNumber  ProductLot<br>doseCount  ProductLot (xsd:integer)<br>expiryDate  ProductLot (xsd:date)<br>minTemperature, maxTemperature<br>&nbsp;&nbsp;TemperatureRange (xsd:decimal)<br>serialNumber  Sensor<br>lastCalibrated  Sensor (xsd:date)<br>eventTime  LogisticsEvent (xsd:dateTime)<br>resultTime  TempObs (xsd:dateTime)<br>&nbsp;&nbsp;⊑ sosa:resultTime<br>celsiusValue  TempObs (xsd:decimal)</td>
+</tr>
+</table>
+
+<h3>Instance data</h3>
+<p>2 organisations, 2 warehouses, 2 vaccines, 2 temperature ranges (+2..+8 °C and −25..−15 °C), 2 lots, 2 containers, 2 sensors,
+2 shipments, 4 events and 8 readings. S101 carries Vaccine-A from Bengaluru-North to Mysuru-Central in C7 (sensor T91). S102 carries
+frozen Vaccine-B from Mysuru-Central to Bengaluru-North in C8 (sensor T92). The data includes two deliberate test cases. T91 records
+<b>9.4 °C at 11:00</b>, which is a real excursion during transit. It also records <b>1.6 °C at 07:30</b>, which is below range but
+was taken during pre-cooling, before dispatch at 08:00. A correct query must report the first reading and ignore the second.</p>
+
+<div class="avoid"><h2>4. Graph view (subgraph of S101)</h2>
+<figure>
+  <img src="../figures/s101_subgraph.png" alt="RDF subgraph around shipment S101">
+  <figcaption>Figure 1. 18 triples around shipment S101. Blue: IRI resources; yellow: typed literals; green: class.
+  <code>draw_graph.py</code> checks that each drawn edge exists in <code>cold_chain.ttl</code>.
+  The path S101 → lot → product → range → max is the one that Q4 follows.</figcaption>
+</figure></div>
+
+<h2>5. Five key modelling decisions</h2>
+<h3>D1. A product type is separate from the physical lot that is shipped</h3>
+<p><code>prod:vaccine-a</code> (a <code>cc:Vaccine</code>) describes what the product is. <code>lot:VA-2609-01</code>
+(a <code>cc:ProductLot</code>) is the physical batch in the container, with its lot number, dose count and expiry date. The shipment
+contains the lot, and the lot points to its product. <i>Alternative rejected:</i> <code>shp:S101 cc:carries prod:vaccine-a</code>.
+That gives no place for lot-specific facts such as expiry and quantity. It would also attach recall or excursion consequences to the
+whole product type instead of the affected batch.</p>
+
+<h3>D2. The permitted temperature range is its own resource, attached to the product type</h3>
+<p><code>rng:2to8C</code> carries <code>cc:minTemperature</code>, <code>cc:maxTemperature</code> and a unit IRI
+(<code>unit:DEG_C</code>). Ranges are reused: any product with the same storage class points to the same node. The range belongs to the
+product, not the shipment, because it is a property of the medicine. Shipments inherit it through the lot (Q3).
+<i>Alternative rejected:</i> two bare literals such as <code>minTemp 2</code> and <code>maxTemp 8</code> on each shipment. That copies
+the rule into every record, loses the unit, and lets copies disagree.</p>
+
+<h3>D3. Readings are tied to the sensor, the container and a time, not to the shipment</h3>
+<p>Each <code>cc:TemperatureObservation</code> has <code>madeBySensor</code>, <code>observedContainer</code>, <code>resultTime</code>
+and <code>celsiusValue</code>, matching the SOSA pattern. A reading is assigned to a shipment by its time: it counts if it falls
+between that shipment's dispatch and arrival in the same container (Q4). This matches the real world. The sensor logs readings with no
+knowledge of shipments, and containers are reused for many trips. The design also lets the model tell the pre-cooling reading (1.6 °C)
+apart from an excursion during transit (9.4 °C). <i>Alternative rejected:</i> a direct <code>reading → shipment</code> link. It is
+simpler to query, but it is a judgement stored as fact. It would be wrong for readings outside the trip window, and it would need
+re-linking every time a container is reused.</p>
+
+<h3>D4. Dispatch and arrival are event resources, not date fields on the shipment</h3>
+<p><code>evt:S101-dispatch</code> is a <code>cc:DispatchEvent</code> with <code>eventOf</code>, <code>atFacility</code> and
+<code>eventTime</code>. Each event can therefore record where it happened as well as when. New event types such as handover, customs
+hold or a second leg can be added as further subclasses of <code>cc:LogisticsEvent</code> without changing the shipment.
+<i>Alternative rejected:</i> <code>shp:S101 cc:dispatchedAt "2026-10-05T08:00"</code>. This needs a new property for every kind of
+event and cannot say where the event happened.</p>
+
+<h3>D5. Derived facts are queried, not stored; external vocabularies are linked by sub-class and sub-property</h3>
+<p>No excursion flag or "delivered" status is stored. Both follow from the readings, ranges and events, so storing them would
+duplicate the data and risk contradicting it. They are computed by queries (Q4, Q5). For interoperability, the local terms are
+declared as specialisations of SOSA (<code>cc:TemperatureObservation ⊑ sosa:Observation</code>,
+<code>cc:madeBySensor ⊑ sosa:madeBySensor</code>, …). An RDFS reasoner then makes every reading visible to any SOSA-aware tool without
+changing the data (Q7). Local names were kept because they fit the domain and avoid a full dependency on SOSA.</p>
+
+<h2>6. Validation and results</h2>
+<p>All results below were produced by <code>python validate.py</code> (rdflib 7 + owlrl), which writes <code>results.txt</code>.
+The same file imports into GraphDB (ruleset RDFS-Optimized) and opens in Protégé.</p>
+<table class="avoid">
+<tr><th>Check</th><th>Method</th><th>Result</th></tr>
+<tr><td>Turtle syntax</td><td>rdflib parser</td><td>OK – 334 explicit triples (requirement: ≥ 50)</td></tr>
+<tr><td>Vocabulary closure</td><td>every <code>cc:</code> predicate/class used in data is declared</td><td>0 undeclared terms (18 classes, 28 properties)</td></tr>
+<tr><td>Domain/range conformance</td><td>each subject/object already has the declared domain/range type via rdf:type + subClassOf</td><td>0 violations, so RDFS domain/range rules add no unintended types</td></tr>
+<tr><td>Data-quality rules</td><td>Q8: arrival after dispatch; every shipment has both events; complete readings; min &lt; max</td><td>0 rows</td></tr>
+<tr><td>RDFS inference</td><td>owlrl RDFS closure</td><td>752 triples (418 inferred, including RDFS axiomatic triples)</td></tr>
+</table>
+
+<table class="avoid">
+<tr><th>Query</th><th>Result (abridged from results.txt)</th></tr>
+<tr><td>Q2 / CQ1</td><td>S101 · Vaccine-A · lot VA-2609-01 · 2400 doses · C7 · FrostLine · Bengaluru-North<br>S102 · Vaccine-B · lot VB-2609-07 · 1500 doses · C8 · FrostLine · Mysuru-Central</td></tr>
+<tr><td>Q3 / CQ2</td><td>S101: 2.0 to 8.0 DEG_C; S102: −25.0 to −15.0 DEG_C</td></tr>
+<tr><td>Q4 / CQ3</td><td><b>1 row:</b> S101 · T91 · 2026-10-05T11:00+05:30 · 9.4 (max 8.0). The 07:30 reading of 1.6 °C is correctly excluded as pre-dispatch.</td></tr>
+<tr><td>Q5 / CQ4</td><td>S101 Bengaluru-North 08:00 → Mysuru-Central 12:30; S102 Mysuru-Central 07:30 → Bengaluru-North 11:45</td></tr>
+<tr><td>Q6 / CQ5</td><td>S101 · C7 · T91 · calibrated 2026-08-14 · 5 readings; S102 · C8 · T92 · 2026-09-02 · 3 readings</td></tr>
+<tr><td>Q7 / CQ6</td><td><b>0 rows without inference, 14 with RDFS inference.</b> The 4 events are LogisticsEvent via subClassOf. The 2 warehouses are Facility via subClassOf (and the range of origin/atFacility). The 8 readings are sosa:Observation via the SOSA alignment.</td></tr>
+</table>
+
+<p><b>Interpretation.</b> Q4 is the result that matters most to the business. Answering it combines five sources of facts: the shipment,
+its lot, the product's range, the dispatch and arrival events, and the container's readings. In the original records these sat in
+three separate systems. Q7 shows what the RDFS layer adds. The data never states that a reading is a <code>sosa:Observation</code>,
+but a reasoner concludes it from the vocabulary.</p>
+
+<h2>7. Limitations and reflection</h2>
+<ul>
+<li><b>RDFS does not constrain data.</b> A domain or range does not reject wrong data. It infers new types instead. For example, if a
+reading were mistakenly linked with <code>cc:eventOf</code>, RDFS would quietly conclude that the reading is a
+<code>LogisticsEvent</code>. This is why I added the explicit domain/range conformance check and the SPARQL rules in Q8. In
+production, SHACL shapes would do this job (for example, "exactly one dispatch event per shipment" and "min &lt; max").</li>
+<li><b>Open world.</b> A missing reading does not mean the temperature was fine. Q4 can only report excursions among the readings that
+were recorded. Gaps between readings (C7 has one reading per hour) are not detected. A check on the time between readings would be a
+useful next query.</li>
+<li><b>Time-window attribution assumes one shipment per container at a time.</b> Combined loads would need an explicit
+container-loading event.</li>
+<li><b>One unit only.</b> Readings are stored in °C, and the unit is fixed by the property name <code>celsiusValue</code>. Mixed-unit
+loggers would need a value-plus-unit node (for example QUDT <code>QuantityValue</code>).</li>
+<li><b>Small, fictional dataset.</b> Two shipments are enough to test each query, including one positive and one negative case, but
+not to test performance or messy real data.</li>
+</ul>
+
+<h2>8. Tools, sources and AI assistance</h2>
+<p><b>Tools:</b> Turtle edited in a plain text editor (Turtle 1.1 syntax); Python 3.12, rdflib 7 and owlrl for parsing, RDFS inference and SPARQL;
+matplotlib for Figure 1; optional GraphDB Free / Protégé for viewing. <b>Sources:</b> W3C RDF 1.1 Turtle and RDF Schema 1.1
+recommendations; W3C SOSA/SSN ontology; QUDT units vocabulary; CSE4007 lecture material.
+<b>AI assistance:</b> Claude (Anthropic) was used to generate the Turtle file, the SPARQL queries, the validation and drawing scripts, and a draft of this report from the case description.</p>
+
+</body>
+</html>
