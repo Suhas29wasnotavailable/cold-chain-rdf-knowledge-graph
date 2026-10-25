@@ -14,7 +14,7 @@ An RDF graph with a small RDFS vocabulary for vaccine shipments (S101, S102), re
 |---|---|
 | `cold_chain.ttl` | RDFS vocabulary (18 classes, 28 properties) and instance data in Turtle. 334 triples |
 | `queries.rq` | 8 SPARQL queries: triple count, CQ1–CQ6 and a data-quality validation query, each with its expected result |
-| `validate.py` | Parses the file, checks the vocabulary and domain/range, computes the RDFS closure and runs every query |
+| `validate.py` | Parses the file, checks the vocabulary and domain/range, computes the RDFS closure, runs every query and checks each row count |
 | `results.txt` | Output of `validate.py` |
 | `draw_graph.py` | Draws the S101 subgraph and checks each drawn edge against the data |
 | `figures/s101_subgraph.png` / `.svg` | Graph figure used in the report |
@@ -34,7 +34,7 @@ python validate.py                 # prints checks and all query results, writes
 python draw_graph.py               # regenerates figures/s101_subgraph.png
 ```
 
-`validate.py` exits with code 0 only if the vocabulary and domain/range checks pass.
+`validate.py` exits with code 0 only if the vocabulary and domain/range checks pass and every query returns its expected number of rows.
 
 ## Reproduce in GraphDB (optional)
 1. Open `http://localhost:7200`, then **Setup → Repositories → Create new repository → GraphDB Repository**. Use ID `cold_chain` and ruleset **RDFS (Optimized)**.

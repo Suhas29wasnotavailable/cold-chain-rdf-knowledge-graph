@@ -10,6 +10,8 @@ Steps
      domain/range rules add no surprising new types.
   4. Compute the RDFS closure (owlrl) and run all queries on the explicit
      graph and on the inferred graph.
+  5. Compare each query's row count with the expected count below; any
+     mismatch makes the script exit with code 1.
 """
 import re
 import sys
@@ -23,6 +25,10 @@ TTL = HERE / "cold_chain.ttl"
 RQ = HERE / "queries.rq"
 VOCAB = "http://example.org/coldchain/vocab#"
 BUILTIN = (str(RDF), str(RDFS), str(OWL))
+
+# Expected row counts (see the "Expected:" comment above each query).
+# Q7 runs twice: without and with RDFS inference.
+EXPECTED_ROWS = {"Q1": 1, "Q2": 2, "Q3": 2, "Q4": 1, "Q5": 2, "Q6": 2, "Q7": 0, "Q7+inference": 14, "Q8": 0}
 
 out_lines = []
 
@@ -56,11 +62,15 @@ def run(g, q):
     return [tuple(short(v, g) if v is not None else "" for v in row) for row in res], [str(v) for v in res.vars]
 
 
-def print_table(rows, cols):
+def print_table(rows, cols, key, mismatches):
     say("    " + " | ".join(cols))
     for r in rows:
         say("    " + " | ".join(r))
-    say(f"    ({len(rows)} rows)")
+    expected = EXPECTED_ROWS.get(key)
+    ok = expected is None or expected == len(rows)
+    say(f"    ({len(rows)} rows; expected {expected}: {'OK' if ok else 'MISMATCH'})")
+    if not ok:
+        mismatches.append(key)
 
 
 def subclass_closure(g):
@@ -126,20 +136,27 @@ def main():
     say(f"[4] RDFS closure (owlrl): {len(gi)} triples ({len(gi) - len(g)} inferred, "
         f"incl. RDFS axiomatic triples)")
 
+    mismatches = []
     for title, q in load_queries():
+        key = title.split()[0]
         say()
         say(f"=== {title}")
         rows, cols = run(g, q)
-        if title.startswith("Q7"):
+        if key == "Q7":
             say("  without inference:")
-            print_table(rows, cols)
+            print_table(rows, cols, key, mismatches)
             rows, cols = run(gi, q)
             say("  with RDFS inference:")
-        print_table(rows, cols)
+            key = "Q7+inference"
+        print_table(rows, cols, key, mismatches)
+
+    say()
+    say(f"[5] Expected row counts: {len(EXPECTED_ROWS) - len(mismatches)}/{len(EXPECTED_ROWS)} match"
+        + (f" - MISMATCH in {', '.join(mismatches)}" if mismatches else ""))
 
     (HERE / "results.txt").write_text("\n".join(out_lines) + "\n")
     print("\nWrote results.txt")
-    return 1 if (undeclared or problems) else 0
+    return 1 if (undeclared or problems or mismatches) else 0
 
 
 if __name__ == "__main__":

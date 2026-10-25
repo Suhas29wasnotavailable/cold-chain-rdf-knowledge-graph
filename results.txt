@@ -6,41 +6,41 @@
 === Q1 Triple count
     triples
     334
-    (1 rows)
+    (1 rows; expected 1: OK)
 
 === Q2 CQ1 - What does each shipment carry, in which container, with which carrier, and who is responsible?
     shipment | product | lot | doses | container | carrier | responsible
     S101 | Vaccine-A | VA-2609-01 | 2400 | C7 | FrostLine Logistics | Bengaluru-North
     S102 | Vaccine-B | VB-2609-07 | 1500 | C8 | FrostLine Logistics | Mysuru-Central
-    (2 rows)
+    (2 rows; expected 2: OK)
 
 === Q3 CQ2 - What temperature range must each shipment be kept within?
     shipment | product | min | max | unit
     S101 | Vaccine-A | 2.0 | 8.0 | unit:DEG_C
     S102 | Vaccine-B | -25.0 | -15.0 | unit:DEG_C
-    (2 rows)
+    (2 rows; expected 2: OK)
 
 === Q4 CQ3 - Which readings taken DURING transit were outside the permitted range?
     shipment | sensor | time | value | min | max
     S101 | T91 | 2026-10-05T11:00:00+05:30 | 9.4 | 2.0 | 8.0
-    (1 rows)
+    (1 rows; expected 1: OK)
 
 === Q5 CQ4 - When was each shipment dispatched and when did it arrive, and from where to where?
     shipment | from | dispatched | to | arrived
     S101 | Bengaluru-North | 2026-10-05T08:00:00+05:30 | Mysuru-Central | 2026-10-05T12:30:00+05:30
     S102 | Mysuru-Central | 2026-10-06T07:30:00+05:30 | Bengaluru-North | 2026-10-06T11:45:00+05:30
-    (2 rows)
+    (2 rows; expected 2: OK)
 
 === Q6 CQ5 - Which sensor monitored each shipment's container, when was it calibrated, and how many readings did it give?
     shipment | container | sensor | calibrated | readings
     S101 | C7 | T91 | 2026-08-14 | 5
     S102 | C8 | T92 | 2026-09-02 | 3
-    (2 rows)
+    (2 rows; expected 2: OK)
 
 === Q7 CQ6 - Which resources are logistics events, facilities, and SOSA observations? (RDFS inference)
   without inference:
     class | resource
-    (0 rows)
+    (0 rows; expected 0: OK)
   with RDFS inference:
     class | resource
     cc:Facility | wh:BLR-N
@@ -57,8 +57,10 @@
     sosa:Observation | obs:T92-20261006T0800
     sosa:Observation | obs:T92-20261006T0930
     sosa:Observation | obs:T92-20261006T1100
-    (14 rows)
+    (14 rows; expected 14: OK)
 
 === Q8 Validation - Data-quality checks (each must return 0 rows)
     problem | thing
-    (0 rows)
+    (0 rows; expected 0: OK)
+
+[5] Expected row counts: 9/9 match
