@@ -16,6 +16,7 @@ An RDF graph with a small RDFS vocabulary for vaccine shipments (S101, S102), re
 | `queries.rq` | 8 SPARQL queries: triple count, CQ1–CQ6 and a data-quality validation query, each with its expected result |
 | `validate.py` | Parses the file, checks the vocabulary and domain/range, computes the RDFS closure, runs every query and checks each row count |
 | `results.txt` | Output of `validate.py` |
+| `tests/` | pytest checks of the actual competency-question answers, and that Q8 catches a deliberately broken range |
 | `draw_graph.py` | Draws the S101 subgraph and checks each drawn edge against the data |
 | `figures/s101_subgraph.png` / `.svg` | Graph figure used in the report |
 | `report/report.html` | 5-page report: problem, CQs, vocabulary, 5 modelling decisions, results and limitations |
@@ -32,6 +33,7 @@ source .venv/bin/activate          # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 python validate.py                 # prints checks and all query results, writes results.txt
 python draw_graph.py               # regenerates figures/s101_subgraph.png
+pip install -r requirements-dev.txt && pytest   # checks the CQ answers
 ```
 
 `validate.py` exits with code 0 only if the vocabulary and domain/range checks pass and every query returns its expected number of rows.
