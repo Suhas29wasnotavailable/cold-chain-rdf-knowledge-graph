@@ -12,8 +12,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install -r requirements.txt
+      - run: pip install -r requirements-dev.txt
       - name: Vocabulary, domain/range checks and SPARQL queries
         run: python validate.py
       - name: Committed results.txt matches a fresh run
         run: git diff --exit-code results.txt
+      - name: Competency-question answers
+        run: pytest -q tests
