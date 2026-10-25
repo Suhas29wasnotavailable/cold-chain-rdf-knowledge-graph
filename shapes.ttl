@@ -1,0 +1,48 @@
+#################################################################
+#  SHACL shapes for cold_chain.ttl
+#  RDFS cannot say "exactly one" or "must be a decimal"; these
+#  closed-world constraints can. Run: python shacl_check.py
+#################################################################
+
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix cc:   <http://example.org/coldchain/vocab#> .
+@prefix ccsh: <http://example.org/coldchain/shapes#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+ccsh:ShipmentShape a sh:NodeShape ;
+    sh:targetClass cc:Shipment ;
+    sh:property [ sh:path cc:code ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path cc:containsLot ; sh:class cc:ProductLot ; sh:minCount 1 ] ;
+    sh:property [ sh:path cc:transportedIn ; sh:class cc:RefrigeratedContainer ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path cc:carriedBy ; sh:class cc:Carrier ; sh:minCount 1 ] ;
+    sh:property [ sh:path cc:responsibleWarehouse ; sh:class cc:Warehouse ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+ccsh:LotShape a sh:NodeShape ;
+    sh:targetClass cc:ProductLot ;
+    sh:property [ sh:path cc:ofProduct ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path cc:doseCount ; sh:datatype xsd:integer ; sh:minExclusive 0 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path cc:expiryDate ; sh:datatype xsd:date ; sh:maxCount 1 ] .
+
+ccsh:RangeShape a sh:NodeShape ;
+    sh:targetSubjectsOf cc:minTemperature ;
+    sh:property [ sh:path cc:minTemperature ; sh:datatype xsd:decimal ; sh:minCount 1 ; sh:maxCount 1 ;
+                  sh:lessThan cc:maxTemperature ] ;
+    sh:property [ sh:path cc:maxTemperature ; sh:datatype xsd:decimal ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+ccsh:SensorShape a sh:NodeShape ;
+    sh:targetClass cc:TemperatureSensor ;
+    sh:property [ sh:path cc:lastCalibrated ; sh:datatype xsd:date ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+ccsh:ObservationShape a sh:NodeShape ;
+    sh:targetClass cc:TemperatureObservation ;
+    sh:property [ sh:path cc:madeBySensor ; sh:class cc:TemperatureSensor ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path cc:observedContainer ; sh:class cc:RefrigeratedContainer ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path cc:resultTime ; sh:datatype xsd:dateTime ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path cc:celsiusValue ; sh:datatype xsd:decimal ; sh:minCount 1 ; sh:maxCount 1 ;
+                  sh:minInclusive -100 ; sh:maxInclusive 100 ] .
+
+ccsh:EventShape a sh:NodeShape ;
+    sh:targetClass cc:DispatchEvent, cc:ArrivalEvent ;
+    sh:property [ sh:path cc:eventOf ; sh:class cc:Shipment ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path cc:atFacility ; sh:class cc:Warehouse ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path cc:eventTime ; sh:datatype xsd:dateTime ; sh:minCount 1 ; sh:maxCount 1 ] .

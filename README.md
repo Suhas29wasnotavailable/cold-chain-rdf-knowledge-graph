@@ -15,6 +15,8 @@ An RDF graph with a small RDFS vocabulary for vaccine shipments (S101, S102), re
 | `cold_chain.ttl` | RDFS vocabulary (18 classes, 28 properties) and instance data in Turtle. 334 triples |
 | `queries.rq` | 8 SPARQL queries: triple count, CQ1–CQ6 and a data-quality validation query, each with its expected result |
 | `validate.py` | Parses the file, checks the vocabulary and domain/range, computes the RDFS closure, runs every query and checks each row count |
+| `shapes.ttl` | SHACL shapes: cardinalities, datatypes, value bounds and min < max, which RDFS cannot express |
+| `shacl_check.py` | Validates the data against `shapes.ttl` with pySHACL (RDFS inference on) |
 | `results.txt` | Output of `validate.py` |
 | `tests/` | pytest checks of the actual competency-question answers, and that Q8 catches a deliberately broken range |
 | `draw_graph.py` | Draws the S101 subgraph and checks each drawn edge against the data |
@@ -22,7 +24,7 @@ An RDF graph with a small RDFS vocabulary for vaccine shipments (S101, S102), re
 | `report/report.html` | 5-page report: problem, CQs, vocabulary, 5 modelling decisions, results and limitations |
 
 ## Tools
-- Python 3.10+ with rdflib 7, owlrl 7 and matplotlib (`requirements.txt`)
+- Python 3.10+ with rdflib 7, owlrl 7, pySHACL and matplotlib (`requirements.txt`)
 - Optional: GraphDB Free, for a triple store, RDFS inference and a visual graph; Protégé, for browsing classes and properties
 
 ## Reproduce (command line)
@@ -33,6 +35,7 @@ source .venv/bin/activate          # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 python validate.py                 # prints checks and all query results, writes results.txt
 python draw_graph.py               # regenerates figures/s101_subgraph.png
+python shacl_check.py              # SHACL validation report
 pip install -r requirements-dev.txt && pytest   # checks the CQ answers
 ```
 

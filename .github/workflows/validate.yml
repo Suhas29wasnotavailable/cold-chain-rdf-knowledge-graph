@@ -17,5 +17,7 @@ jobs:
         run: python validate.py
       - name: Committed results.txt matches a fresh run
         run: git diff --exit-code results.txt
+      - name: SHACL shapes
+        run: python shacl_check.py
       - name: Competency-question answers
         run: pytest -q tests
