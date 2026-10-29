@@ -34,6 +34,7 @@ python3 -m venv .venv
 source .venv/bin/activate          # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 python validate.py                 # prints checks and all query results, writes results.txt
+python validate.py --csv out       # also saves each query result as out/Qn.csv
 python draw_graph.py               # regenerates figures/s101_subgraph.png
 python shacl_check.py              # SHACL validation report
 pip install -r requirements-dev.txt && pytest   # checks the CQ answers

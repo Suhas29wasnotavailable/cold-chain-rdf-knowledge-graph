@@ -1,6 +1,7 @@
 """Validate cold_chain.ttl and run every query in queries.rq.
 
 Usage:  python validate.py            (prints a report, writes results.txt)
+        python validate.py --csv out  (also writes one CSV per query result)
 
 Steps
   1. Parse the Turtle file (syntax check) and count triples.
@@ -13,6 +14,8 @@ Steps
   5. Compare each query's row count with the expected count below; any
      mismatch makes the script exit with code 1.
 """
+import argparse
+import csv
 import re
 import sys
 from pathlib import Path
@@ -87,7 +90,19 @@ def subclass_closure(g):
     return ups
 
 
-def main():
+def write_csv(directory, key, rows, cols):
+    directory.mkdir(parents=True, exist_ok=True)
+    with open(directory / f"{key.replace('+', '_')}.csv", "w", newline="") as f:
+        w = csv.writer(f)
+        w.writerow(cols)
+        w.writerows(rows)
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap.add_argument("--csv", type=Path, metavar="DIR", help="write each query result to DIR/<query>.csv")
+    args = ap.parse_args(argv)
+
     g = Graph()
     g.parse(TTL, format="turtle")
     say(f"[1] Syntax OK - {TTL.name} parsed, {len(g)} explicit triples")
@@ -145,10 +160,14 @@ def main():
         if key == "Q7":
             say("  without inference:")
             print_table(rows, cols, key, mismatches)
+            if args.csv:
+                write_csv(args.csv, key, rows, cols)
             rows, cols = run(gi, q)
             say("  with RDFS inference:")
             key = "Q7+inference"
         print_table(rows, cols, key, mismatches)
+        if args.csv:
+            write_csv(args.csv, key, rows, cols)
 
     say()
     say(f"[5] Expected row counts: {len(EXPECTED_ROWS) - len(mismatches)}/{len(EXPECTED_ROWS)} match"
