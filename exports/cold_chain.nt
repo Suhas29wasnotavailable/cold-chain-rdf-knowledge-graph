@@ -1,0 +1,334 @@
+<http://example.org/coldchain/id/container/C7> <http://example.org/coldchain/vocab#code> "C7" .
+<http://example.org/coldchain/id/container/C7> <http://example.org/coldchain/vocab#fittedWith> <http://example.org/coldchain/id/sensor/T91> .
+<http://example.org/coldchain/id/container/C7> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/coldchain/vocab#RefrigeratedContainer> .
+<http://example.org/coldchain/id/container/C7> <http://www.w3.org/2000/01/rdf-schema#label> "Container C7"@en .
+<http://example.org/coldchain/id/container/C8> <http://example.org/coldchain/vocab#code> "C8" .
+<http://example.org/coldchain/id/container/C8> <http://example.org/coldchain/vocab#fittedWith> <http://example.org/coldchain/id/sensor/T92> .
+<http://example.org/coldchain/id/container/C8> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/coldchain/vocab#RefrigeratedContainer> .
+<http://example.org/coldchain/id/container/C8> <http://www.w3.org/2000/01/rdf-schema#label> "Container C8"@en .
+<http://example.org/coldchain/id/event/S101-arrival> <http://example.org/coldchain/vocab#atFacility> <http://example.org/coldchain/id/warehouse/MYS-C> .
+<http://example.org/coldchain/id/event/S101-arrival> <http://example.org/coldchain/vocab#eventOf> <http://example.org/coldchain/id/shipment/S101> .
+<http://example.org/coldchain/id/event/S101-arrival> <http://example.org/coldchain/vocab#eventTime> "2026-10-05T12:30:00+05:30"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://example.org/coldchain/id/event/S101-arrival> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/coldchain/vocab#ArrivalEvent> .
+<http://example.org/coldchain/id/event/S101-arrival> <http://www.w3.org/2000/01/rdf-schema#label> "S101 arrived at Mysuru-Central"@en .
+<http://example.org/coldchain/id/event/S101-dispatch> <http://example.org/coldchain/vocab#atFacility> <http://example.org/coldchain/id/warehouse/BLR-N> .
+<http://example.org/coldchain/id/event/S101-dispatch> <http://example.org/coldchain/vocab#eventOf> <http://example.org/coldchain/id/shipment/S101> .
+<http://example.org/coldchain/id/event/S101-dispatch> <http://example.org/coldchain/vocab#eventTime> "2026-10-05T08:00:00+05:30"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://example.org/coldchain/id/event/S101-dispatch> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/coldchain/vocab#DispatchEvent> .
+<http://example.org/coldchain/id/event/S101-dispatch> <http://www.w3.org/2000/01/rdf-schema#label> "S101 dispatched from Bengaluru-North"@en .
+<http://example.org/coldchain/id/event/S102-arrival> <http://example.org/coldchain/vocab#atFacility> <http://example.org/coldchain/id/warehouse/BLR-N> .
+<http://example.org/coldchain/id/event/S102-arrival> <http://example.org/coldchain/vocab#eventOf> <http://example.org/coldchain/id/shipment/S102> .
+<http://example.org/coldchain/id/event/S102-arrival> <http://example.org/coldchain/vocab#eventTime> "2026-10-06T11:45:00+05:30"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://example.org/coldchain/id/event/S102-arrival> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/coldchain/vocab#ArrivalEvent> .
+<http://example.org/coldchain/id/event/S102-arrival> <http://www.w3.org/2000/01/rdf-schema#label> "S102 arrived at Bengaluru-North"@en .
+<http://example.org/coldchain/id/event/S102-dispatch> <http://example.org/coldchain/vocab#atFacility> <http://example.org/coldchain/id/warehouse/MYS-C> .
+<http://example.org/coldchain/id/event/S102-dispatch> <http://example.org/coldchain/vocab#eventOf> <http://example.org/coldchain/id/shipment/S102> .
+<http://example.org/coldchain/id/event/S102-dispatch> <http://example.org/coldchain/vocab#eventTime> "2026-10-06T07:30:00+05:30"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://example.org/coldchain/id/event/S102-dispatch> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/coldchain/vocab#DispatchEvent> .
+<http://example.org/coldchain/id/event/S102-dispatch> <http://www.w3.org/2000/01/rdf-schema#label> "S102 dispatched from Mysuru-Central"@en .
+<http://example.org/coldchain/id/lot/VA-2609-01> <http://example.org/coldchain/vocab#doseCount> "2400"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://example.org/coldchain/id/lot/VA-2609-01> <http://example.org/coldchain/vocab#expiryDate> "2027-09-30"^^<http://www.w3.org/2001/XMLSchema#date> .
+<http://example.org/coldchain/id/lot/VA-2609-01> <http://example.org/coldchain/vocab#lotNumber> "VA-2609-01" .
+<http://example.org/coldchain/id/lot/VA-2609-01> <http://example.org/coldchain/vocab#ofProduct> <http://example.org/coldchain/id/product/vaccine-a> .
+<http://example.org/coldchain/id/lot/VA-2609-01> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/coldchain/vocab#ProductLot> .
+<http://example.org/coldchain/id/lot/VA-2609-01> <http://www.w3.org/2000/01/rdf-schema#label> "Lot VA-2609-01"@en .
+<http://example.org/coldchain/id/lot/VB-2609-07> <http://example.org/coldchain/vocab#doseCount> "1500"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://example.org/coldchain/id/lot/VB-2609-07> <http://example.org/coldchain/vocab#expiryDate> "2027-03-31"^^<http://www.w3.org/2001/XMLSchema#date> .
+<http://example.org/coldchain/id/lot/VB-2609-07> <http://example.org/coldchain/vocab#lotNumber> "VB-2609-07" .
+<http://example.org/coldchain/id/lot/VB-2609-07> <http://example.org/coldchain/vocab#ofProduct> <http://example.org/coldchain/id/product/vaccine-b> .
+<http://example.org/coldchain/id/lot/VB-2609-07> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/coldchain/vocab#ProductLot> .
+<http://example.org/coldchain/id/lot/VB-2609-07> <http://www.w3.org/2000/01/rdf-schema#label> "Lot VB-2609-07"@en .
+<http://example.org/coldchain/id/observation/T91-20261005T0730> <http://example.org/coldchain/vocab#celsiusValue> "1.6"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://example.org/coldchain/id/observation/T91-20261005T0730> <http://example.org/coldchain/vocab#madeBySensor> <http://example.org/coldchain/id/sensor/T91> .
+<http://example.org/coldchain/id/observation/T91-20261005T0730> <http://example.org/coldchain/vocab#observedContainer> <http://example.org/coldchain/id/container/C7> .
+<http://example.org/coldchain/id/observation/T91-20261005T0730> <http://example.org/coldchain/vocab#resultTime> "2026-10-05T07:30:00+05:30"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://example.org/coldchain/id/observation/T91-20261005T0730> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/coldchain/vocab#TemperatureObservation> .
+<http://example.org/coldchain/id/observation/T91-20261005T0730> <http://www.w3.org/2000/01/rdf-schema#label> "T91 reading 07:30 (pre-cooling)"@en .
+<http://example.org/coldchain/id/observation/T91-20261005T0900> <http://example.org/coldchain/vocab#celsiusValue> "4.2"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://example.org/coldchain/id/observation/T91-20261005T0900> <http://example.org/coldchain/vocab#madeBySensor> <http://example.org/coldchain/id/sensor/T91> .
+<http://example.org/coldchain/id/observation/T91-20261005T0900> <http://example.org/coldchain/vocab#observedContainer> <http://example.org/coldchain/id/container/C7> .
+<http://example.org/coldchain/id/observation/T91-20261005T0900> <http://example.org/coldchain/vocab#resultTime> "2026-10-05T09:00:00+05:30"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://example.org/coldchain/id/observation/T91-20261005T0900> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/coldchain/vocab#TemperatureObservation> .
+<http://example.org/coldchain/id/observation/T91-20261005T0900> <http://www.w3.org/2000/01/rdf-schema#label> "T91 reading 09:00"@en .
+<http://example.org/coldchain/id/observation/T91-20261005T1000> <http://example.org/coldchain/vocab#celsiusValue> "5.1"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://example.org/coldchain/id/observation/T91-20261005T1000> <http://example.org/coldchain/vocab#madeBySensor> <http://example.org/coldchain/id/sensor/T91> .
+<http://example.org/coldchain/id/observation/T91-20261005T1000> <http://example.org/coldchain/vocab#observedContainer> <http://example.org/coldchain/id/container/C7> .
+<http://example.org/coldchain/id/observation/T91-20261005T1000> <http://example.org/coldchain/vocab#resultTime> "2026-10-05T10:00:00+05:30"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://example.org/coldchain/id/observation/T91-20261005T1000> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/coldchain/vocab#TemperatureObservation> .
+<http://example.org/coldchain/id/observation/T91-20261005T1000> <http://www.w3.org/2000/01/rdf-schema#label> "T91 reading 10:00"@en .
+<http://example.org/coldchain/id/observation/T91-20261005T1100> <http://example.org/coldchain/vocab#celsiusValue> "9.4"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://example.org/coldchain/id/observation/T91-20261005T1100> <http://example.org/coldchain/vocab#madeBySensor> <http://example.org/coldchain/id/sensor/T91> .
+<http://example.org/coldchain/id/observation/T91-20261005T1100> <http://example.org/coldchain/vocab#observedContainer> <http://example.org/coldchain/id/container/C7> .
+<http://example.org/coldchain/id/observation/T91-20261005T1100> <http://example.org/coldchain/vocab#resultTime> "2026-10-05T11:00:00+05:30"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://example.org/coldchain/id/observation/T91-20261005T1100> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/coldchain/vocab#TemperatureObservation> .
+<http://example.org/coldchain/id/observation/T91-20261005T1100> <http://www.w3.org/2000/01/rdf-schema#label> "T91 reading 11:00"@en .
+<http://example.org/coldchain/id/observation/T91-20261005T1200> <http://example.org/coldchain/vocab#celsiusValue> "6.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://example.org/coldchain/id/observation/T91-20261005T1200> <http://example.org/coldchain/vocab#madeBySensor> <http://example.org/coldchain/id/sensor/T91> .
+<http://example.org/coldchain/id/observation/T91-20261005T1200> <http://example.org/coldchain/vocab#observedContainer> <http://example.org/coldchain/id/container/C7> .
+<http://example.org/coldchain/id/observation/T91-20261005T1200> <http://example.org/coldchain/vocab#resultTime> "2026-10-05T12:00:00+05:30"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://example.org/coldchain/id/observation/T91-20261005T1200> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/coldchain/vocab#TemperatureObservation> .
+<http://example.org/coldchain/id/observation/T91-20261005T1200> <http://www.w3.org/2000/01/rdf-schema#label> "T91 reading 12:00"@en .
+<http://example.org/coldchain/id/observation/T92-20261006T0800> <http://example.org/coldchain/vocab#celsiusValue> "-20.4"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://example.org/coldchain/id/observation/T92-20261006T0800> <http://example.org/coldchain/vocab#madeBySensor> <http://example.org/coldchain/id/sensor/T92> .
+<http://example.org/coldchain/id/observation/T92-20261006T0800> <http://example.org/coldchain/vocab#observedContainer> <http://example.org/coldchain/id/container/C8> .
+<http://example.org/coldchain/id/observation/T92-20261006T0800> <http://example.org/coldchain/vocab#resultTime> "2026-10-06T08:00:00+05:30"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://example.org/coldchain/id/observation/T92-20261006T0800> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/coldchain/vocab#TemperatureObservation> .
+<http://example.org/coldchain/id/observation/T92-20261006T0800> <http://www.w3.org/2000/01/rdf-schema#label> "T92 reading 08:00"@en .
+<http://example.org/coldchain/id/observation/T92-20261006T0930> <http://example.org/coldchain/vocab#celsiusValue> "-18.7"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://example.org/coldchain/id/observation/T92-20261006T0930> <http://example.org/coldchain/vocab#madeBySensor> <http://example.org/coldchain/id/sensor/T92> .
+<http://example.org/coldchain/id/observation/T92-20261006T0930> <http://example.org/coldchain/vocab#observedContainer> <http://example.org/coldchain/id/container/C8> .
+<http://example.org/coldchain/id/observation/T92-20261006T0930> <http://example.org/coldchain/vocab#resultTime> "2026-10-06T09:30:00+05:30"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://example.org/coldchain/id/observation/T92-20261006T0930> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/coldchain/vocab#TemperatureObservation> .
+<http://example.org/coldchain/id/observation/T92-20261006T0930> <http://www.w3.org/2000/01/rdf-schema#label> "T92 reading 09:30"@en .
+<http://example.org/coldchain/id/observation/T92-20261006T1100> <http://example.org/coldchain/vocab#celsiusValue> "-19.9"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://example.org/coldchain/id/observation/T92-20261006T1100> <http://example.org/coldchain/vocab#madeBySensor> <http://example.org/coldchain/id/sensor/T92> .
+<http://example.org/coldchain/id/observation/T92-20261006T1100> <http://example.org/coldchain/vocab#observedContainer> <http://example.org/coldchain/id/container/C8> .
+<http://example.org/coldchain/id/observation/T92-20261006T1100> <http://example.org/coldchain/vocab#resultTime> "2026-10-06T11:00:00+05:30"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://example.org/coldchain/id/observation/T92-20261006T1100> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/coldchain/vocab#TemperatureObservation> .
+<http://example.org/coldchain/id/observation/T92-20261006T1100> <http://www.w3.org/2000/01/rdf-schema#label> "T92 reading 11:00"@en .
+<http://example.org/coldchain/id/organisation/frostline> <http://example.org/coldchain/vocab#name> "FrostLine Logistics" .
+<http://example.org/coldchain/id/organisation/frostline> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/coldchain/vocab#Carrier> .
+<http://example.org/coldchain/id/organisation/frostline> <http://www.w3.org/2000/01/rdf-schema#label> "FrostLine Logistics"@en .
+<http://example.org/coldchain/id/organisation/medivault> <http://example.org/coldchain/vocab#name> "MediVault Distribution Pvt Ltd" .
+<http://example.org/coldchain/id/organisation/medivault> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/coldchain/vocab#Distributor> .
+<http://example.org/coldchain/id/organisation/medivault> <http://www.w3.org/2000/01/rdf-schema#label> "MediVault Distribution"@en .
+<http://example.org/coldchain/id/product/vaccine-a> <http://example.org/coldchain/vocab#requiredRange> <http://example.org/coldchain/id/range/2to8C> .
+<http://example.org/coldchain/id/product/vaccine-a> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/coldchain/vocab#Vaccine> .
+<http://example.org/coldchain/id/product/vaccine-a> <http://www.w3.org/2000/01/rdf-schema#label> "Vaccine-A"@en .
+<http://example.org/coldchain/id/product/vaccine-b> <http://example.org/coldchain/vocab#requiredRange> <http://example.org/coldchain/id/range/minus25to-15C> .
+<http://example.org/coldchain/id/product/vaccine-b> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/coldchain/vocab#Vaccine> .
+<http://example.org/coldchain/id/product/vaccine-b> <http://www.w3.org/2000/01/rdf-schema#label> "Vaccine-B"@en .
+<http://example.org/coldchain/id/range/2to8C> <http://example.org/coldchain/vocab#maxTemperature> "8.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://example.org/coldchain/id/range/2to8C> <http://example.org/coldchain/vocab#minTemperature> "2.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://example.org/coldchain/id/range/2to8C> <http://example.org/coldchain/vocab#temperatureUnit> <http://qudt.org/vocab/unit/DEG_C> .
+<http://example.org/coldchain/id/range/2to8C> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/coldchain/vocab#TemperatureRange> .
+<http://example.org/coldchain/id/range/2to8C> <http://www.w3.org/2000/01/rdf-schema#label> "Refrigerated, +2 to +8 °C"@en .
+<http://example.org/coldchain/id/range/minus25to-15C> <http://example.org/coldchain/vocab#maxTemperature> "-15.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://example.org/coldchain/id/range/minus25to-15C> <http://example.org/coldchain/vocab#minTemperature> "-25.0"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://example.org/coldchain/id/range/minus25to-15C> <http://example.org/coldchain/vocab#temperatureUnit> <http://qudt.org/vocab/unit/DEG_C> .
+<http://example.org/coldchain/id/range/minus25to-15C> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/coldchain/vocab#TemperatureRange> .
+<http://example.org/coldchain/id/range/minus25to-15C> <http://www.w3.org/2000/01/rdf-schema#label> "Frozen, -25 to -15 °C"@en .
+<http://example.org/coldchain/id/sensor/T91> <http://example.org/coldchain/vocab#code> "T91" .
+<http://example.org/coldchain/id/sensor/T91> <http://example.org/coldchain/vocab#lastCalibrated> "2026-08-14"^^<http://www.w3.org/2001/XMLSchema#date> .
+<http://example.org/coldchain/id/sensor/T91> <http://example.org/coldchain/vocab#serialNumber> "TS-91-44871" .
+<http://example.org/coldchain/id/sensor/T91> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/coldchain/vocab#TemperatureSensor> .
+<http://example.org/coldchain/id/sensor/T91> <http://www.w3.org/2000/01/rdf-schema#label> "Sensor T91"@en .
+<http://example.org/coldchain/id/sensor/T92> <http://example.org/coldchain/vocab#code> "T92" .
+<http://example.org/coldchain/id/sensor/T92> <http://example.org/coldchain/vocab#lastCalibrated> "2026-09-02"^^<http://www.w3.org/2001/XMLSchema#date> .
+<http://example.org/coldchain/id/sensor/T92> <http://example.org/coldchain/vocab#serialNumber> "TS-92-44902" .
+<http://example.org/coldchain/id/sensor/T92> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/coldchain/vocab#TemperatureSensor> .
+<http://example.org/coldchain/id/sensor/T92> <http://www.w3.org/2000/01/rdf-schema#label> "Sensor T92"@en .
+<http://example.org/coldchain/id/shipment/S101> <http://example.org/coldchain/vocab#carriedBy> <http://example.org/coldchain/id/organisation/frostline> .
+<http://example.org/coldchain/id/shipment/S101> <http://example.org/coldchain/vocab#code> "S101" .
+<http://example.org/coldchain/id/shipment/S101> <http://example.org/coldchain/vocab#containsLot> <http://example.org/coldchain/id/lot/VA-2609-01> .
+<http://example.org/coldchain/id/shipment/S101> <http://example.org/coldchain/vocab#destination> <http://example.org/coldchain/id/warehouse/MYS-C> .
+<http://example.org/coldchain/id/shipment/S101> <http://example.org/coldchain/vocab#origin> <http://example.org/coldchain/id/warehouse/BLR-N> .
+<http://example.org/coldchain/id/shipment/S101> <http://example.org/coldchain/vocab#responsibleWarehouse> <http://example.org/coldchain/id/warehouse/BLR-N> .
+<http://example.org/coldchain/id/shipment/S101> <http://example.org/coldchain/vocab#transportedIn> <http://example.org/coldchain/id/container/C7> .
+<http://example.org/coldchain/id/shipment/S101> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/coldchain/vocab#Shipment> .
+<http://example.org/coldchain/id/shipment/S101> <http://www.w3.org/2000/01/rdf-schema#label> "Shipment S101"@en .
+<http://example.org/coldchain/id/shipment/S102> <http://example.org/coldchain/vocab#carriedBy> <http://example.org/coldchain/id/organisation/frostline> .
+<http://example.org/coldchain/id/shipment/S102> <http://example.org/coldchain/vocab#code> "S102" .
+<http://example.org/coldchain/id/shipment/S102> <http://example.org/coldchain/vocab#containsLot> <http://example.org/coldchain/id/lot/VB-2609-07> .
+<http://example.org/coldchain/id/shipment/S102> <http://example.org/coldchain/vocab#destination> <http://example.org/coldchain/id/warehouse/BLR-N> .
+<http://example.org/coldchain/id/shipment/S102> <http://example.org/coldchain/vocab#origin> <http://example.org/coldchain/id/warehouse/MYS-C> .
+<http://example.org/coldchain/id/shipment/S102> <http://example.org/coldchain/vocab#responsibleWarehouse> <http://example.org/coldchain/id/warehouse/MYS-C> .
+<http://example.org/coldchain/id/shipment/S102> <http://example.org/coldchain/vocab#transportedIn> <http://example.org/coldchain/id/container/C8> .
+<http://example.org/coldchain/id/shipment/S102> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/coldchain/vocab#Shipment> .
+<http://example.org/coldchain/id/shipment/S102> <http://www.w3.org/2000/01/rdf-schema#label> "Shipment S102"@en .
+<http://example.org/coldchain/id/warehouse/BLR-N> <http://example.org/coldchain/vocab#city> "Bengaluru" .
+<http://example.org/coldchain/id/warehouse/BLR-N> <http://example.org/coldchain/vocab#code> "BLR-N" .
+<http://example.org/coldchain/id/warehouse/BLR-N> <http://example.org/coldchain/vocab#operatedBy> <http://example.org/coldchain/id/organisation/medivault> .
+<http://example.org/coldchain/id/warehouse/BLR-N> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/coldchain/vocab#Warehouse> .
+<http://example.org/coldchain/id/warehouse/BLR-N> <http://www.w3.org/2000/01/rdf-schema#label> "Bengaluru-North"@en .
+<http://example.org/coldchain/id/warehouse/MYS-C> <http://example.org/coldchain/vocab#city> "Mysuru" .
+<http://example.org/coldchain/id/warehouse/MYS-C> <http://example.org/coldchain/vocab#code> "MYS-C" .
+<http://example.org/coldchain/id/warehouse/MYS-C> <http://example.org/coldchain/vocab#operatedBy> <http://example.org/coldchain/id/organisation/medivault> .
+<http://example.org/coldchain/id/warehouse/MYS-C> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/coldchain/vocab#Warehouse> .
+<http://example.org/coldchain/id/warehouse/MYS-C> <http://www.w3.org/2000/01/rdf-schema#label> "Mysuru-Central"@en .
+<http://example.org/coldchain/vocab#ArrivalEvent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://example.org/coldchain/vocab#ArrivalEvent> <http://www.w3.org/2000/01/rdf-schema#comment> "A shipment reaches its destination facility."@en .
+<http://example.org/coldchain/vocab#ArrivalEvent> <http://www.w3.org/2000/01/rdf-schema#label> "Arrival event"@en .
+<http://example.org/coldchain/vocab#ArrivalEvent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://example.org/coldchain/vocab#LogisticsEvent> .
+<http://example.org/coldchain/vocab#Carrier> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://example.org/coldchain/vocab#Carrier> <http://www.w3.org/2000/01/rdf-schema#comment> "An organisation that physically transports shipments."@en .
+<http://example.org/coldchain/vocab#Carrier> <http://www.w3.org/2000/01/rdf-schema#label> "Carrier"@en .
+<http://example.org/coldchain/vocab#Carrier> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://example.org/coldchain/vocab#Organisation> .
+<http://example.org/coldchain/vocab#Container> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://example.org/coldchain/vocab#Container> <http://www.w3.org/2000/01/rdf-schema#comment> "A reusable physical transport unit."@en .
+<http://example.org/coldchain/vocab#Container> <http://www.w3.org/2000/01/rdf-schema#label> "Container"@en .
+<http://example.org/coldchain/vocab#DispatchEvent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://example.org/coldchain/vocab#DispatchEvent> <http://www.w3.org/2000/01/rdf-schema#comment> "A shipment leaves its origin facility."@en .
+<http://example.org/coldchain/vocab#DispatchEvent> <http://www.w3.org/2000/01/rdf-schema#label> "Dispatch event"@en .
+<http://example.org/coldchain/vocab#DispatchEvent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://example.org/coldchain/vocab#LogisticsEvent> .
+<http://example.org/coldchain/vocab#Distributor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://example.org/coldchain/vocab#Distributor> <http://www.w3.org/2000/01/rdf-schema#comment> "An organisation that owns stock and operates warehouses."@en .
+<http://example.org/coldchain/vocab#Distributor> <http://www.w3.org/2000/01/rdf-schema#label> "Distributor"@en .
+<http://example.org/coldchain/vocab#Distributor> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://example.org/coldchain/vocab#Organisation> .
+<http://example.org/coldchain/vocab#Facility> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://example.org/coldchain/vocab#Facility> <http://www.w3.org/2000/01/rdf-schema#comment> "A physical site where goods are stored or handled."@en .
+<http://example.org/coldchain/vocab#Facility> <http://www.w3.org/2000/01/rdf-schema#label> "Facility"@en .
+<http://example.org/coldchain/vocab#LogisticsEvent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://example.org/coldchain/vocab#LogisticsEvent> <http://www.w3.org/2000/01/rdf-schema#comment> "Something that happens to a shipment at a place and time."@en .
+<http://example.org/coldchain/vocab#LogisticsEvent> <http://www.w3.org/2000/01/rdf-schema#label> "Logistics event"@en .
+<http://example.org/coldchain/vocab#Organisation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://example.org/coldchain/vocab#Organisation> <http://www.w3.org/2000/01/rdf-schema#comment> "A company or body that takes part in the cold chain."@en .
+<http://example.org/coldchain/vocab#Organisation> <http://www.w3.org/2000/01/rdf-schema#label> "Organisation"@en .
+<http://example.org/coldchain/vocab#Product> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://example.org/coldchain/vocab#Product> <http://www.w3.org/2000/01/rdf-schema#comment> "A product type as listed in a catalogue (not a physical quantity)."@en .
+<http://example.org/coldchain/vocab#Product> <http://www.w3.org/2000/01/rdf-schema#label> "Product"@en .
+<http://example.org/coldchain/vocab#ProductLot> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://example.org/coldchain/vocab#ProductLot> <http://www.w3.org/2000/01/rdf-schema#comment> "A physical, manufactured batch of a product, identified by a lot number."@en .
+<http://example.org/coldchain/vocab#ProductLot> <http://www.w3.org/2000/01/rdf-schema#label> "Product lot"@en .
+<http://example.org/coldchain/vocab#RefrigeratedContainer> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://example.org/coldchain/vocab#RefrigeratedContainer> <http://www.w3.org/2000/01/rdf-schema#comment> "A container with active cooling."@en .
+<http://example.org/coldchain/vocab#RefrigeratedContainer> <http://www.w3.org/2000/01/rdf-schema#label> "Refrigerated container"@en .
+<http://example.org/coldchain/vocab#RefrigeratedContainer> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://example.org/coldchain/vocab#Container> .
+<http://example.org/coldchain/vocab#Sensor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://example.org/coldchain/vocab#Sensor> <http://www.w3.org/2000/01/rdf-schema#comment> "A device that produces observations."@en .
+<http://example.org/coldchain/vocab#Sensor> <http://www.w3.org/2000/01/rdf-schema#label> "Sensor"@en .
+<http://example.org/coldchain/vocab#Sensor> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/ns/sosa/Sensor> .
+<http://example.org/coldchain/vocab#Shipment> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://example.org/coldchain/vocab#Shipment> <http://www.w3.org/2000/01/rdf-schema#comment> "A consignment of one or more product lots moved from an origin to a destination."@en .
+<http://example.org/coldchain/vocab#Shipment> <http://www.w3.org/2000/01/rdf-schema#label> "Shipment"@en .
+<http://example.org/coldchain/vocab#TemperatureObservation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://example.org/coldchain/vocab#TemperatureObservation> <http://www.w3.org/2000/01/rdf-schema#comment> "A single temperature reading taken by a sensor inside a container at a time."@en .
+<http://example.org/coldchain/vocab#TemperatureObservation> <http://www.w3.org/2000/01/rdf-schema#label> "Temperature observation"@en .
+<http://example.org/coldchain/vocab#TemperatureObservation> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/ns/sosa/Observation> .
+<http://example.org/coldchain/vocab#TemperatureRange> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://example.org/coldchain/vocab#TemperatureRange> <http://www.w3.org/2000/01/rdf-schema#comment> "A permitted range with a minimum, a maximum and a unit."@en .
+<http://example.org/coldchain/vocab#TemperatureRange> <http://www.w3.org/2000/01/rdf-schema#label> "Temperature range"@en .
+<http://example.org/coldchain/vocab#TemperatureSensor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://example.org/coldchain/vocab#TemperatureSensor> <http://www.w3.org/2000/01/rdf-schema#comment> "A sensor that records temperature."@en .
+<http://example.org/coldchain/vocab#TemperatureSensor> <http://www.w3.org/2000/01/rdf-schema#label> "Temperature sensor"@en .
+<http://example.org/coldchain/vocab#TemperatureSensor> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://example.org/coldchain/vocab#Sensor> .
+<http://example.org/coldchain/vocab#Vaccine> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://example.org/coldchain/vocab#Vaccine> <http://www.w3.org/2000/01/rdf-schema#comment> "A vaccine product type with a required storage temperature range."@en .
+<http://example.org/coldchain/vocab#Vaccine> <http://www.w3.org/2000/01/rdf-schema#label> "Vaccine"@en .
+<http://example.org/coldchain/vocab#Vaccine> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://example.org/coldchain/vocab#Product> .
+<http://example.org/coldchain/vocab#Warehouse> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://example.org/coldchain/vocab#Warehouse> <http://www.w3.org/2000/01/rdf-schema#comment> "A temperature-controlled storage facility."@en .
+<http://example.org/coldchain/vocab#Warehouse> <http://www.w3.org/2000/01/rdf-schema#label> "Warehouse"@en .
+<http://example.org/coldchain/vocab#Warehouse> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://example.org/coldchain/vocab#Facility> .
+<http://example.org/coldchain/vocab#atFacility> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://example.org/coldchain/vocab#atFacility> <http://www.w3.org/2000/01/rdf-schema#domain> <http://example.org/coldchain/vocab#LogisticsEvent> .
+<http://example.org/coldchain/vocab#atFacility> <http://www.w3.org/2000/01/rdf-schema#label> "at facility"@en .
+<http://example.org/coldchain/vocab#atFacility> <http://www.w3.org/2000/01/rdf-schema#range> <http://example.org/coldchain/vocab#Facility> .
+<http://example.org/coldchain/vocab#carriedBy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://example.org/coldchain/vocab#carriedBy> <http://www.w3.org/2000/01/rdf-schema#domain> <http://example.org/coldchain/vocab#Shipment> .
+<http://example.org/coldchain/vocab#carriedBy> <http://www.w3.org/2000/01/rdf-schema#label> "carried by"@en .
+<http://example.org/coldchain/vocab#carriedBy> <http://www.w3.org/2000/01/rdf-schema#range> <http://example.org/coldchain/vocab#Carrier> .
+<http://example.org/coldchain/vocab#celsiusValue> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://example.org/coldchain/vocab#celsiusValue> <http://www.w3.org/2000/01/rdf-schema#comment> "The measured temperature; the unit is fixed by the property name."@en .
+<http://example.org/coldchain/vocab#celsiusValue> <http://www.w3.org/2000/01/rdf-schema#domain> <http://example.org/coldchain/vocab#TemperatureObservation> .
+<http://example.org/coldchain/vocab#celsiusValue> <http://www.w3.org/2000/01/rdf-schema#label> "value in degrees Celsius"@en .
+<http://example.org/coldchain/vocab#celsiusValue> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#decimal> .
+<http://example.org/coldchain/vocab#city> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://example.org/coldchain/vocab#city> <http://www.w3.org/2000/01/rdf-schema#domain> <http://example.org/coldchain/vocab#Facility> .
+<http://example.org/coldchain/vocab#city> <http://www.w3.org/2000/01/rdf-schema#label> "city"@en .
+<http://example.org/coldchain/vocab#city> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<http://example.org/coldchain/vocab#code> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://example.org/coldchain/vocab#code> <http://www.w3.org/2000/01/rdf-schema#comment> "The identifier used by the business (S101, C7, T91 ...), kept as a literal next to the IRI."@en .
+<http://example.org/coldchain/vocab#code> <http://www.w3.org/2000/01/rdf-schema#label> "business code"@en .
+<http://example.org/coldchain/vocab#code> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<http://example.org/coldchain/vocab#containsLot> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://example.org/coldchain/vocab#containsLot> <http://www.w3.org/2000/01/rdf-schema#domain> <http://example.org/coldchain/vocab#Shipment> .
+<http://example.org/coldchain/vocab#containsLot> <http://www.w3.org/2000/01/rdf-schema#label> "contains lot"@en .
+<http://example.org/coldchain/vocab#containsLot> <http://www.w3.org/2000/01/rdf-schema#range> <http://example.org/coldchain/vocab#ProductLot> .
+<http://example.org/coldchain/vocab#destination> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://example.org/coldchain/vocab#destination> <http://www.w3.org/2000/01/rdf-schema#domain> <http://example.org/coldchain/vocab#Shipment> .
+<http://example.org/coldchain/vocab#destination> <http://www.w3.org/2000/01/rdf-schema#label> "destination"@en .
+<http://example.org/coldchain/vocab#destination> <http://www.w3.org/2000/01/rdf-schema#range> <http://example.org/coldchain/vocab#Facility> .
+<http://example.org/coldchain/vocab#doseCount> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://example.org/coldchain/vocab#doseCount> <http://www.w3.org/2000/01/rdf-schema#domain> <http://example.org/coldchain/vocab#ProductLot> .
+<http://example.org/coldchain/vocab#doseCount> <http://www.w3.org/2000/01/rdf-schema#label> "dose count"@en .
+<http://example.org/coldchain/vocab#doseCount> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#integer> .
+<http://example.org/coldchain/vocab#eventOf> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://example.org/coldchain/vocab#eventOf> <http://www.w3.org/2000/01/rdf-schema#domain> <http://example.org/coldchain/vocab#LogisticsEvent> .
+<http://example.org/coldchain/vocab#eventOf> <http://www.w3.org/2000/01/rdf-schema#label> "event of"@en .
+<http://example.org/coldchain/vocab#eventOf> <http://www.w3.org/2000/01/rdf-schema#range> <http://example.org/coldchain/vocab#Shipment> .
+<http://example.org/coldchain/vocab#eventTime> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://example.org/coldchain/vocab#eventTime> <http://www.w3.org/2000/01/rdf-schema#domain> <http://example.org/coldchain/vocab#LogisticsEvent> .
+<http://example.org/coldchain/vocab#eventTime> <http://www.w3.org/2000/01/rdf-schema#label> "event time"@en .
+<http://example.org/coldchain/vocab#eventTime> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://example.org/coldchain/vocab#expiryDate> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://example.org/coldchain/vocab#expiryDate> <http://www.w3.org/2000/01/rdf-schema#domain> <http://example.org/coldchain/vocab#ProductLot> .
+<http://example.org/coldchain/vocab#expiryDate> <http://www.w3.org/2000/01/rdf-schema#label> "expiry date"@en .
+<http://example.org/coldchain/vocab#expiryDate> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#date> .
+<http://example.org/coldchain/vocab#fittedWith> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://example.org/coldchain/vocab#fittedWith> <http://www.w3.org/2000/01/rdf-schema#comment> "A sensor installed in a container."@en .
+<http://example.org/coldchain/vocab#fittedWith> <http://www.w3.org/2000/01/rdf-schema#domain> <http://example.org/coldchain/vocab#Container> .
+<http://example.org/coldchain/vocab#fittedWith> <http://www.w3.org/2000/01/rdf-schema#label> "fitted with"@en .
+<http://example.org/coldchain/vocab#fittedWith> <http://www.w3.org/2000/01/rdf-schema#range> <http://example.org/coldchain/vocab#Sensor> .
+<http://example.org/coldchain/vocab#lastCalibrated> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://example.org/coldchain/vocab#lastCalibrated> <http://www.w3.org/2000/01/rdf-schema#domain> <http://example.org/coldchain/vocab#Sensor> .
+<http://example.org/coldchain/vocab#lastCalibrated> <http://www.w3.org/2000/01/rdf-schema#label> "last calibrated"@en .
+<http://example.org/coldchain/vocab#lastCalibrated> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#date> .
+<http://example.org/coldchain/vocab#lotNumber> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://example.org/coldchain/vocab#lotNumber> <http://www.w3.org/2000/01/rdf-schema#domain> <http://example.org/coldchain/vocab#ProductLot> .
+<http://example.org/coldchain/vocab#lotNumber> <http://www.w3.org/2000/01/rdf-schema#label> "lot number"@en .
+<http://example.org/coldchain/vocab#lotNumber> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<http://example.org/coldchain/vocab#madeBySensor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://example.org/coldchain/vocab#madeBySensor> <http://www.w3.org/2000/01/rdf-schema#domain> <http://example.org/coldchain/vocab#TemperatureObservation> .
+<http://example.org/coldchain/vocab#madeBySensor> <http://www.w3.org/2000/01/rdf-schema#label> "made by sensor"@en .
+<http://example.org/coldchain/vocab#madeBySensor> <http://www.w3.org/2000/01/rdf-schema#range> <http://example.org/coldchain/vocab#Sensor> .
+<http://example.org/coldchain/vocab#madeBySensor> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://www.w3.org/ns/sosa/madeBySensor> .
+<http://example.org/coldchain/vocab#maxTemperature> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://example.org/coldchain/vocab#maxTemperature> <http://www.w3.org/2000/01/rdf-schema#domain> <http://example.org/coldchain/vocab#TemperatureRange> .
+<http://example.org/coldchain/vocab#maxTemperature> <http://www.w3.org/2000/01/rdf-schema#label> "maximum temperature"@en .
+<http://example.org/coldchain/vocab#maxTemperature> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#decimal> .
+<http://example.org/coldchain/vocab#minTemperature> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://example.org/coldchain/vocab#minTemperature> <http://www.w3.org/2000/01/rdf-schema#domain> <http://example.org/coldchain/vocab#TemperatureRange> .
+<http://example.org/coldchain/vocab#minTemperature> <http://www.w3.org/2000/01/rdf-schema#label> "minimum temperature"@en .
+<http://example.org/coldchain/vocab#minTemperature> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#decimal> .
+<http://example.org/coldchain/vocab#name> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://example.org/coldchain/vocab#name> <http://www.w3.org/2000/01/rdf-schema#label> "name"@en .
+<http://example.org/coldchain/vocab#name> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<http://example.org/coldchain/vocab#observedContainer> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://example.org/coldchain/vocab#observedContainer> <http://www.w3.org/2000/01/rdf-schema#comment> "The container whose internal temperature was measured."@en .
+<http://example.org/coldchain/vocab#observedContainer> <http://www.w3.org/2000/01/rdf-schema#domain> <http://example.org/coldchain/vocab#TemperatureObservation> .
+<http://example.org/coldchain/vocab#observedContainer> <http://www.w3.org/2000/01/rdf-schema#label> "observed container"@en .
+<http://example.org/coldchain/vocab#observedContainer> <http://www.w3.org/2000/01/rdf-schema#range> <http://example.org/coldchain/vocab#Container> .
+<http://example.org/coldchain/vocab#observedContainer> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://www.w3.org/ns/sosa/hasFeatureOfInterest> .
+<http://example.org/coldchain/vocab#ofProduct> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://example.org/coldchain/vocab#ofProduct> <http://www.w3.org/2000/01/rdf-schema#comment> "The product type that a physical lot is an instance of."@en .
+<http://example.org/coldchain/vocab#ofProduct> <http://www.w3.org/2000/01/rdf-schema#domain> <http://example.org/coldchain/vocab#ProductLot> .
+<http://example.org/coldchain/vocab#ofProduct> <http://www.w3.org/2000/01/rdf-schema#label> "of product"@en .
+<http://example.org/coldchain/vocab#ofProduct> <http://www.w3.org/2000/01/rdf-schema#range> <http://example.org/coldchain/vocab#Product> .
+<http://example.org/coldchain/vocab#operatedBy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://example.org/coldchain/vocab#operatedBy> <http://www.w3.org/2000/01/rdf-schema#domain> <http://example.org/coldchain/vocab#Warehouse> .
+<http://example.org/coldchain/vocab#operatedBy> <http://www.w3.org/2000/01/rdf-schema#label> "operated by"@en .
+<http://example.org/coldchain/vocab#operatedBy> <http://www.w3.org/2000/01/rdf-schema#range> <http://example.org/coldchain/vocab#Distributor> .
+<http://example.org/coldchain/vocab#origin> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://example.org/coldchain/vocab#origin> <http://www.w3.org/2000/01/rdf-schema#domain> <http://example.org/coldchain/vocab#Shipment> .
+<http://example.org/coldchain/vocab#origin> <http://www.w3.org/2000/01/rdf-schema#label> "origin"@en .
+<http://example.org/coldchain/vocab#origin> <http://www.w3.org/2000/01/rdf-schema#range> <http://example.org/coldchain/vocab#Facility> .
+<http://example.org/coldchain/vocab#requiredRange> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://example.org/coldchain/vocab#requiredRange> <http://www.w3.org/2000/01/rdf-schema#domain> <http://example.org/coldchain/vocab#Product> .
+<http://example.org/coldchain/vocab#requiredRange> <http://www.w3.org/2000/01/rdf-schema#label> "required temperature range"@en .
+<http://example.org/coldchain/vocab#requiredRange> <http://www.w3.org/2000/01/rdf-schema#range> <http://example.org/coldchain/vocab#TemperatureRange> .
+<http://example.org/coldchain/vocab#responsibleWarehouse> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://example.org/coldchain/vocab#responsibleWarehouse> <http://www.w3.org/2000/01/rdf-schema#comment> "The warehouse accountable for the shipment's cold-chain record."@en .
+<http://example.org/coldchain/vocab#responsibleWarehouse> <http://www.w3.org/2000/01/rdf-schema#domain> <http://example.org/coldchain/vocab#Shipment> .
+<http://example.org/coldchain/vocab#responsibleWarehouse> <http://www.w3.org/2000/01/rdf-schema#label> "responsible warehouse"@en .
+<http://example.org/coldchain/vocab#responsibleWarehouse> <http://www.w3.org/2000/01/rdf-schema#range> <http://example.org/coldchain/vocab#Warehouse> .
+<http://example.org/coldchain/vocab#resultTime> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://example.org/coldchain/vocab#resultTime> <http://www.w3.org/2000/01/rdf-schema#domain> <http://example.org/coldchain/vocab#TemperatureObservation> .
+<http://example.org/coldchain/vocab#resultTime> <http://www.w3.org/2000/01/rdf-schema#label> "result time"@en .
+<http://example.org/coldchain/vocab#resultTime> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://example.org/coldchain/vocab#resultTime> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://www.w3.org/ns/sosa/resultTime> .
+<http://example.org/coldchain/vocab#serialNumber> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://example.org/coldchain/vocab#serialNumber> <http://www.w3.org/2000/01/rdf-schema#domain> <http://example.org/coldchain/vocab#Sensor> .
+<http://example.org/coldchain/vocab#serialNumber> <http://www.w3.org/2000/01/rdf-schema#label> "serial number"@en .
+<http://example.org/coldchain/vocab#serialNumber> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<http://example.org/coldchain/vocab#temperatureUnit> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://example.org/coldchain/vocab#temperatureUnit> <http://www.w3.org/2000/01/rdf-schema#comment> "Unit of the range values, as a QUDT unit IRI."@en .
+<http://example.org/coldchain/vocab#temperatureUnit> <http://www.w3.org/2000/01/rdf-schema#domain> <http://example.org/coldchain/vocab#TemperatureRange> .
+<http://example.org/coldchain/vocab#temperatureUnit> <http://www.w3.org/2000/01/rdf-schema#label> "temperature unit"@en .
+<http://example.org/coldchain/vocab#transportedIn> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://example.org/coldchain/vocab#transportedIn> <http://www.w3.org/2000/01/rdf-schema#domain> <http://example.org/coldchain/vocab#Shipment> .
+<http://example.org/coldchain/vocab#transportedIn> <http://www.w3.org/2000/01/rdf-schema#label> "transported in"@en .
+<http://example.org/coldchain/vocab#transportedIn> <http://www.w3.org/2000/01/rdf-schema#range> <http://example.org/coldchain/vocab#Container> .
+<http://example.org/coldchain/vocab> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
+<http://example.org/coldchain/vocab> <http://www.w3.org/2000/01/rdf-schema#comment> "A small RDFS vocabulary for vaccine shipments, containers, sensors, temperature readings, warehouses and delivery events."@en .
+<http://example.org/coldchain/vocab> <http://www.w3.org/2000/01/rdf-schema#label> "Cold-Chain Shipment Vocabulary"@en .

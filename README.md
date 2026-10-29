@@ -17,6 +17,7 @@ An RDF graph with a small RDFS vocabulary for vaccine shipments (S101, S102), re
 | `validate.py` | Parses the file, checks the vocabulary and domain/range, computes the RDFS closure, runs every query and checks each row count |
 | `shapes.ttl` | SHACL shapes: cardinalities, datatypes, value bounds and min < max, which RDFS cannot express |
 | `shacl_check.py` | Validates the data against `shapes.ttl` with pySHACL (RDFS inference on) |
+| `exports/` | The same graph as N-Triples, JSON-LD and RDF/XML, written by `export_formats.py` (CI checks they are isomorphic to the Turtle) |
 | `results.txt` | Output of `validate.py` |
 | `tests/` | pytest checks of the actual competency-question answers, and that Q8 catches a deliberately broken range |
 | `draw_graph.py` | Draws the S101 subgraph and checks each drawn edge against the data |
