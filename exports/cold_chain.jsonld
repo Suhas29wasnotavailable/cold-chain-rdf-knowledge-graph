@@ -1,0 +1,1878 @@
+[
+  {
+    "@id": "http://example.org/coldchain/vocab#origin",
+    "@type": [
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/coldchain/vocab#Shipment"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "origin"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://example.org/coldchain/vocab#Facility"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/id/event/S101-arrival",
+    "@type": [
+      "http://example.org/coldchain/vocab#ArrivalEvent"
+    ],
+    "http://example.org/coldchain/vocab#atFacility": [
+      {
+        "@id": "http://example.org/coldchain/id/warehouse/MYS-C"
+      }
+    ],
+    "http://example.org/coldchain/vocab#eventOf": [
+      {
+        "@id": "http://example.org/coldchain/id/shipment/S101"
+      }
+    ],
+    "http://example.org/coldchain/vocab#eventTime": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2026-10-05T12:30:00+05:30"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "S101 arrived at Mysuru-Central"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/id/observation/T91-20261005T1200",
+    "@type": [
+      "http://example.org/coldchain/vocab#TemperatureObservation"
+    ],
+    "http://example.org/coldchain/vocab#celsiusValue": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal",
+        "@value": "6.0"
+      }
+    ],
+    "http://example.org/coldchain/vocab#madeBySensor": [
+      {
+        "@id": "http://example.org/coldchain/id/sensor/T91"
+      }
+    ],
+    "http://example.org/coldchain/vocab#observedContainer": [
+      {
+        "@id": "http://example.org/coldchain/id/container/C7"
+      }
+    ],
+    "http://example.org/coldchain/vocab#resultTime": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2026-10-05T12:00:00+05:30"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "T91 reading 12:00"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#temperatureUnit",
+    "@type": [
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Unit of the range values, as a QUDT unit IRI."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/coldchain/vocab#TemperatureRange"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "temperature unit"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#eventTime",
+    "@type": [
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/coldchain/vocab#LogisticsEvent"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "event time"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/id/organisation/medivault",
+    "@type": [
+      "http://example.org/coldchain/vocab#Distributor"
+    ],
+    "http://example.org/coldchain/vocab#name": [
+      {
+        "@value": "MediVault Distribution Pvt Ltd"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "MediVault Distribution"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#Product",
+    "@type": [
+      "http://www.w3.org/2000/01/rdf-schema#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "A product type as listed in a catalogue (not a physical quantity)."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Product"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#Distributor",
+    "@type": [
+      "http://www.w3.org/2000/01/rdf-schema#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "An organisation that owns stock and operates warehouses."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Distributor"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://example.org/coldchain/vocab#Organisation"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/id/observation/T91-20261005T1000",
+    "@type": [
+      "http://example.org/coldchain/vocab#TemperatureObservation"
+    ],
+    "http://example.org/coldchain/vocab#celsiusValue": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal",
+        "@value": "5.1"
+      }
+    ],
+    "http://example.org/coldchain/vocab#madeBySensor": [
+      {
+        "@id": "http://example.org/coldchain/id/sensor/T91"
+      }
+    ],
+    "http://example.org/coldchain/vocab#observedContainer": [
+      {
+        "@id": "http://example.org/coldchain/id/container/C7"
+      }
+    ],
+    "http://example.org/coldchain/vocab#resultTime": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2026-10-05T10:00:00+05:30"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "T91 reading 10:00"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#Shipment",
+    "@type": [
+      "http://www.w3.org/2000/01/rdf-schema#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "A consignment of one or more product lots moved from an origin to a destination."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Shipment"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#atFacility",
+    "@type": [
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/coldchain/vocab#LogisticsEvent"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "at facility"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://example.org/coldchain/vocab#Facility"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#lastCalibrated",
+    "@type": [
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/coldchain/vocab#Sensor"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "last calibrated"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#date"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/id/shipment/S101",
+    "@type": [
+      "http://example.org/coldchain/vocab#Shipment"
+    ],
+    "http://example.org/coldchain/vocab#carriedBy": [
+      {
+        "@id": "http://example.org/coldchain/id/organisation/frostline"
+      }
+    ],
+    "http://example.org/coldchain/vocab#code": [
+      {
+        "@value": "S101"
+      }
+    ],
+    "http://example.org/coldchain/vocab#containsLot": [
+      {
+        "@id": "http://example.org/coldchain/id/lot/VA-2609-01"
+      }
+    ],
+    "http://example.org/coldchain/vocab#destination": [
+      {
+        "@id": "http://example.org/coldchain/id/warehouse/MYS-C"
+      }
+    ],
+    "http://example.org/coldchain/vocab#origin": [
+      {
+        "@id": "http://example.org/coldchain/id/warehouse/BLR-N"
+      }
+    ],
+    "http://example.org/coldchain/vocab#responsibleWarehouse": [
+      {
+        "@id": "http://example.org/coldchain/id/warehouse/BLR-N"
+      }
+    ],
+    "http://example.org/coldchain/vocab#transportedIn": [
+      {
+        "@id": "http://example.org/coldchain/id/container/C7"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Shipment S101"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/id/observation/T92-20261006T0800",
+    "@type": [
+      "http://example.org/coldchain/vocab#TemperatureObservation"
+    ],
+    "http://example.org/coldchain/vocab#celsiusValue": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal",
+        "@value": "-20.4"
+      }
+    ],
+    "http://example.org/coldchain/vocab#madeBySensor": [
+      {
+        "@id": "http://example.org/coldchain/id/sensor/T92"
+      }
+    ],
+    "http://example.org/coldchain/vocab#observedContainer": [
+      {
+        "@id": "http://example.org/coldchain/id/container/C8"
+      }
+    ],
+    "http://example.org/coldchain/vocab#resultTime": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2026-10-06T08:00:00+05:30"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "T92 reading 08:00"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/id/sensor/T92",
+    "@type": [
+      "http://example.org/coldchain/vocab#TemperatureSensor"
+    ],
+    "http://example.org/coldchain/vocab#code": [
+      {
+        "@value": "T92"
+      }
+    ],
+    "http://example.org/coldchain/vocab#lastCalibrated": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#date",
+        "@value": "2026-09-02"
+      }
+    ],
+    "http://example.org/coldchain/vocab#serialNumber": [
+      {
+        "@value": "TS-92-44902"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Sensor T92"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#code",
+    "@type": [
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The identifier used by the business (S101, C7, T91 ...), kept as a literal next to the IRI."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "business code"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/id/event/S102-arrival",
+    "@type": [
+      "http://example.org/coldchain/vocab#ArrivalEvent"
+    ],
+    "http://example.org/coldchain/vocab#atFacility": [
+      {
+        "@id": "http://example.org/coldchain/id/warehouse/BLR-N"
+      }
+    ],
+    "http://example.org/coldchain/vocab#eventOf": [
+      {
+        "@id": "http://example.org/coldchain/id/shipment/S102"
+      }
+    ],
+    "http://example.org/coldchain/vocab#eventTime": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2026-10-06T11:45:00+05:30"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "S102 arrived at Bengaluru-North"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/id/observation/T91-20261005T1100",
+    "@type": [
+      "http://example.org/coldchain/vocab#TemperatureObservation"
+    ],
+    "http://example.org/coldchain/vocab#celsiusValue": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal",
+        "@value": "9.4"
+      }
+    ],
+    "http://example.org/coldchain/vocab#madeBySensor": [
+      {
+        "@id": "http://example.org/coldchain/id/sensor/T91"
+      }
+    ],
+    "http://example.org/coldchain/vocab#observedContainer": [
+      {
+        "@id": "http://example.org/coldchain/id/container/C7"
+      }
+    ],
+    "http://example.org/coldchain/vocab#resultTime": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2026-10-05T11:00:00+05:30"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "T91 reading 11:00"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#Organisation",
+    "@type": [
+      "http://www.w3.org/2000/01/rdf-schema#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "A company or body that takes part in the cold chain."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Organisation"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#TemperatureRange",
+    "@type": [
+      "http://www.w3.org/2000/01/rdf-schema#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "A permitted range with a minimum, a maximum and a unit."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Temperature range"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#transportedIn",
+    "@type": [
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/coldchain/vocab#Shipment"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "transported in"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://example.org/coldchain/vocab#Container"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#Vaccine",
+    "@type": [
+      "http://www.w3.org/2000/01/rdf-schema#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "A vaccine product type with a required storage temperature range."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Vaccine"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://example.org/coldchain/vocab#Product"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#responsibleWarehouse",
+    "@type": [
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The warehouse accountable for the shipment's cold-chain record."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/coldchain/vocab#Shipment"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "responsible warehouse"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://example.org/coldchain/vocab#Warehouse"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/id/range/2to8C",
+    "@type": [
+      "http://example.org/coldchain/vocab#TemperatureRange"
+    ],
+    "http://example.org/coldchain/vocab#maxTemperature": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal",
+        "@value": "8.0"
+      }
+    ],
+    "http://example.org/coldchain/vocab#minTemperature": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal",
+        "@value": "2.0"
+      }
+    ],
+    "http://example.org/coldchain/vocab#temperatureUnit": [
+      {
+        "@id": "http://qudt.org/vocab/unit/DEG_C"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Refrigerated, +2 to +8 °C"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#minTemperature",
+    "@type": [
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/coldchain/vocab#TemperatureRange"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "minimum temperature"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#decimal"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/id/range/minus25to-15C",
+    "@type": [
+      "http://example.org/coldchain/vocab#TemperatureRange"
+    ],
+    "http://example.org/coldchain/vocab#maxTemperature": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal",
+        "@value": "-15.0"
+      }
+    ],
+    "http://example.org/coldchain/vocab#minTemperature": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal",
+        "@value": "-25.0"
+      }
+    ],
+    "http://example.org/coldchain/vocab#temperatureUnit": [
+      {
+        "@id": "http://qudt.org/vocab/unit/DEG_C"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Frozen, -25 to -15 °C"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/id/lot/VA-2609-01",
+    "@type": [
+      "http://example.org/coldchain/vocab#ProductLot"
+    ],
+    "http://example.org/coldchain/vocab#doseCount": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#integer",
+        "@value": 2400
+      }
+    ],
+    "http://example.org/coldchain/vocab#expiryDate": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#date",
+        "@value": "2027-09-30"
+      }
+    ],
+    "http://example.org/coldchain/vocab#lotNumber": [
+      {
+        "@value": "VA-2609-01"
+      }
+    ],
+    "http://example.org/coldchain/vocab#ofProduct": [
+      {
+        "@id": "http://example.org/coldchain/id/product/vaccine-a"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Lot VA-2609-01"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#city",
+    "@type": [
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/coldchain/vocab#Facility"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "city"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/id/observation/T92-20261006T0930",
+    "@type": [
+      "http://example.org/coldchain/vocab#TemperatureObservation"
+    ],
+    "http://example.org/coldchain/vocab#celsiusValue": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal",
+        "@value": "-18.7"
+      }
+    ],
+    "http://example.org/coldchain/vocab#madeBySensor": [
+      {
+        "@id": "http://example.org/coldchain/id/sensor/T92"
+      }
+    ],
+    "http://example.org/coldchain/vocab#observedContainer": [
+      {
+        "@id": "http://example.org/coldchain/id/container/C8"
+      }
+    ],
+    "http://example.org/coldchain/vocab#resultTime": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2026-10-06T09:30:00+05:30"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "T92 reading 09:30"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#Facility",
+    "@type": [
+      "http://www.w3.org/2000/01/rdf-schema#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "A physical site where goods are stored or handled."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Facility"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#TemperatureObservation",
+    "@type": [
+      "http://www.w3.org/2000/01/rdf-schema#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "A single temperature reading taken by a sensor inside a container at a time."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Temperature observation"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://www.w3.org/ns/sosa/Observation"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#operatedBy",
+    "@type": [
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/coldchain/vocab#Warehouse"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "operated by"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://example.org/coldchain/vocab#Distributor"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/id/observation/T91-20261005T0730",
+    "@type": [
+      "http://example.org/coldchain/vocab#TemperatureObservation"
+    ],
+    "http://example.org/coldchain/vocab#celsiusValue": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal",
+        "@value": "1.6"
+      }
+    ],
+    "http://example.org/coldchain/vocab#madeBySensor": [
+      {
+        "@id": "http://example.org/coldchain/id/sensor/T91"
+      }
+    ],
+    "http://example.org/coldchain/vocab#observedContainer": [
+      {
+        "@id": "http://example.org/coldchain/id/container/C7"
+      }
+    ],
+    "http://example.org/coldchain/vocab#resultTime": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2026-10-05T07:30:00+05:30"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "T91 reading 07:30 (pre-cooling)"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#observedContainer",
+    "@type": [
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The container whose internal temperature was measured."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/coldchain/vocab#TemperatureObservation"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "observed container"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://example.org/coldchain/vocab#Container"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subPropertyOf": [
+      {
+        "@id": "http://www.w3.org/ns/sosa/hasFeatureOfInterest"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/id/warehouse/MYS-C",
+    "@type": [
+      "http://example.org/coldchain/vocab#Warehouse"
+    ],
+    "http://example.org/coldchain/vocab#city": [
+      {
+        "@value": "Mysuru"
+      }
+    ],
+    "http://example.org/coldchain/vocab#code": [
+      {
+        "@value": "MYS-C"
+      }
+    ],
+    "http://example.org/coldchain/vocab#operatedBy": [
+      {
+        "@id": "http://example.org/coldchain/id/organisation/medivault"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Mysuru-Central"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/id/organisation/frostline",
+    "@type": [
+      "http://example.org/coldchain/vocab#Carrier"
+    ],
+    "http://example.org/coldchain/vocab#name": [
+      {
+        "@value": "FrostLine Logistics"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "FrostLine Logistics"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#Sensor",
+    "@type": [
+      "http://www.w3.org/2000/01/rdf-schema#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "A device that produces observations."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Sensor"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://www.w3.org/ns/sosa/Sensor"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#serialNumber",
+    "@type": [
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/coldchain/vocab#Sensor"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "serial number"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#expiryDate",
+    "@type": [
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/coldchain/vocab#ProductLot"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "expiry date"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#date"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#ofProduct",
+    "@type": [
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The product type that a physical lot is an instance of."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/coldchain/vocab#ProductLot"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "of product"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://example.org/coldchain/vocab#Product"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#TemperatureSensor",
+    "@type": [
+      "http://www.w3.org/2000/01/rdf-schema#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "A sensor that records temperature."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Temperature sensor"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://example.org/coldchain/vocab#Sensor"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/id/observation/T92-20261006T1100",
+    "@type": [
+      "http://example.org/coldchain/vocab#TemperatureObservation"
+    ],
+    "http://example.org/coldchain/vocab#celsiusValue": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal",
+        "@value": "-19.9"
+      }
+    ],
+    "http://example.org/coldchain/vocab#madeBySensor": [
+      {
+        "@id": "http://example.org/coldchain/id/sensor/T92"
+      }
+    ],
+    "http://example.org/coldchain/vocab#observedContainer": [
+      {
+        "@id": "http://example.org/coldchain/id/container/C8"
+      }
+    ],
+    "http://example.org/coldchain/vocab#resultTime": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2026-10-06T11:00:00+05:30"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "T92 reading 11:00"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#name",
+    "@type": [
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "name"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#RefrigeratedContainer",
+    "@type": [
+      "http://www.w3.org/2000/01/rdf-schema#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "A container with active cooling."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Refrigerated container"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://example.org/coldchain/vocab#Container"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/id/warehouse/BLR-N",
+    "@type": [
+      "http://example.org/coldchain/vocab#Warehouse"
+    ],
+    "http://example.org/coldchain/vocab#city": [
+      {
+        "@value": "Bengaluru"
+      }
+    ],
+    "http://example.org/coldchain/vocab#code": [
+      {
+        "@value": "BLR-N"
+      }
+    ],
+    "http://example.org/coldchain/vocab#operatedBy": [
+      {
+        "@id": "http://example.org/coldchain/id/organisation/medivault"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Bengaluru-North"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/id/shipment/S102",
+    "@type": [
+      "http://example.org/coldchain/vocab#Shipment"
+    ],
+    "http://example.org/coldchain/vocab#carriedBy": [
+      {
+        "@id": "http://example.org/coldchain/id/organisation/frostline"
+      }
+    ],
+    "http://example.org/coldchain/vocab#code": [
+      {
+        "@value": "S102"
+      }
+    ],
+    "http://example.org/coldchain/vocab#containsLot": [
+      {
+        "@id": "http://example.org/coldchain/id/lot/VB-2609-07"
+      }
+    ],
+    "http://example.org/coldchain/vocab#destination": [
+      {
+        "@id": "http://example.org/coldchain/id/warehouse/BLR-N"
+      }
+    ],
+    "http://example.org/coldchain/vocab#origin": [
+      {
+        "@id": "http://example.org/coldchain/id/warehouse/MYS-C"
+      }
+    ],
+    "http://example.org/coldchain/vocab#responsibleWarehouse": [
+      {
+        "@id": "http://example.org/coldchain/id/warehouse/MYS-C"
+      }
+    ],
+    "http://example.org/coldchain/vocab#transportedIn": [
+      {
+        "@id": "http://example.org/coldchain/id/container/C8"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Shipment S102"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#DispatchEvent",
+    "@type": [
+      "http://www.w3.org/2000/01/rdf-schema#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "A shipment leaves its origin facility."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Dispatch event"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://example.org/coldchain/vocab#LogisticsEvent"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#carriedBy",
+    "@type": [
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/coldchain/vocab#Shipment"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "carried by"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://example.org/coldchain/vocab#Carrier"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#madeBySensor",
+    "@type": [
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/coldchain/vocab#TemperatureObservation"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "made by sensor"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://example.org/coldchain/vocab#Sensor"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subPropertyOf": [
+      {
+        "@id": "http://www.w3.org/ns/sosa/madeBySensor"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/id/container/C7",
+    "@type": [
+      "http://example.org/coldchain/vocab#RefrigeratedContainer"
+    ],
+    "http://example.org/coldchain/vocab#code": [
+      {
+        "@value": "C7"
+      }
+    ],
+    "http://example.org/coldchain/vocab#fittedWith": [
+      {
+        "@id": "http://example.org/coldchain/id/sensor/T91"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Container C7"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Ontology"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "A small RDFS vocabulary for vaccine shipments, containers, sensors, temperature readings, warehouses and delivery events."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Cold-Chain Shipment Vocabulary"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#Warehouse",
+    "@type": [
+      "http://www.w3.org/2000/01/rdf-schema#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "A temperature-controlled storage facility."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Warehouse"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://example.org/coldchain/vocab#Facility"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#Carrier",
+    "@type": [
+      "http://www.w3.org/2000/01/rdf-schema#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "An organisation that physically transports shipments."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Carrier"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://example.org/coldchain/vocab#Organisation"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#maxTemperature",
+    "@type": [
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/coldchain/vocab#TemperatureRange"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "maximum temperature"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#decimal"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#requiredRange",
+    "@type": [
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/coldchain/vocab#Product"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "required temperature range"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://example.org/coldchain/vocab#TemperatureRange"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#resultTime",
+    "@type": [
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/coldchain/vocab#TemperatureObservation"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "result time"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subPropertyOf": [
+      {
+        "@id": "http://www.w3.org/ns/sosa/resultTime"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#Container",
+    "@type": [
+      "http://www.w3.org/2000/01/rdf-schema#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "A reusable physical transport unit."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Container"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#fittedWith",
+    "@type": [
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "A sensor installed in a container."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/coldchain/vocab#Container"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "fitted with"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://example.org/coldchain/vocab#Sensor"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#celsiusValue",
+    "@type": [
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The measured temperature; the unit is fixed by the property name."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/coldchain/vocab#TemperatureObservation"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "value in degrees Celsius"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#decimal"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#LogisticsEvent",
+    "@type": [
+      "http://www.w3.org/2000/01/rdf-schema#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Something that happens to a shipment at a place and time."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Logistics event"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/id/event/S102-dispatch",
+    "@type": [
+      "http://example.org/coldchain/vocab#DispatchEvent"
+    ],
+    "http://example.org/coldchain/vocab#atFacility": [
+      {
+        "@id": "http://example.org/coldchain/id/warehouse/MYS-C"
+      }
+    ],
+    "http://example.org/coldchain/vocab#eventOf": [
+      {
+        "@id": "http://example.org/coldchain/id/shipment/S102"
+      }
+    ],
+    "http://example.org/coldchain/vocab#eventTime": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2026-10-06T07:30:00+05:30"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "S102 dispatched from Mysuru-Central"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/id/observation/T91-20261005T0900",
+    "@type": [
+      "http://example.org/coldchain/vocab#TemperatureObservation"
+    ],
+    "http://example.org/coldchain/vocab#celsiusValue": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal",
+        "@value": "4.2"
+      }
+    ],
+    "http://example.org/coldchain/vocab#madeBySensor": [
+      {
+        "@id": "http://example.org/coldchain/id/sensor/T91"
+      }
+    ],
+    "http://example.org/coldchain/vocab#observedContainer": [
+      {
+        "@id": "http://example.org/coldchain/id/container/C7"
+      }
+    ],
+    "http://example.org/coldchain/vocab#resultTime": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2026-10-05T09:00:00+05:30"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "T91 reading 09:00"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#ProductLot",
+    "@type": [
+      "http://www.w3.org/2000/01/rdf-schema#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "A physical, manufactured batch of a product, identified by a lot number."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Product lot"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/id/event/S101-dispatch",
+    "@type": [
+      "http://example.org/coldchain/vocab#DispatchEvent"
+    ],
+    "http://example.org/coldchain/vocab#atFacility": [
+      {
+        "@id": "http://example.org/coldchain/id/warehouse/BLR-N"
+      }
+    ],
+    "http://example.org/coldchain/vocab#eventOf": [
+      {
+        "@id": "http://example.org/coldchain/id/shipment/S101"
+      }
+    ],
+    "http://example.org/coldchain/vocab#eventTime": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2026-10-05T08:00:00+05:30"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "S101 dispatched from Bengaluru-North"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/id/lot/VB-2609-07",
+    "@type": [
+      "http://example.org/coldchain/vocab#ProductLot"
+    ],
+    "http://example.org/coldchain/vocab#doseCount": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#integer",
+        "@value": 1500
+      }
+    ],
+    "http://example.org/coldchain/vocab#expiryDate": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#date",
+        "@value": "2027-03-31"
+      }
+    ],
+    "http://example.org/coldchain/vocab#lotNumber": [
+      {
+        "@value": "VB-2609-07"
+      }
+    ],
+    "http://example.org/coldchain/vocab#ofProduct": [
+      {
+        "@id": "http://example.org/coldchain/id/product/vaccine-b"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Lot VB-2609-07"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#ArrivalEvent",
+    "@type": [
+      "http://www.w3.org/2000/01/rdf-schema#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "A shipment reaches its destination facility."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Arrival event"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://example.org/coldchain/vocab#LogisticsEvent"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/id/sensor/T91",
+    "@type": [
+      "http://example.org/coldchain/vocab#TemperatureSensor"
+    ],
+    "http://example.org/coldchain/vocab#code": [
+      {
+        "@value": "T91"
+      }
+    ],
+    "http://example.org/coldchain/vocab#lastCalibrated": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#date",
+        "@value": "2026-08-14"
+      }
+    ],
+    "http://example.org/coldchain/vocab#serialNumber": [
+      {
+        "@value": "TS-91-44871"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Sensor T91"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#lotNumber",
+    "@type": [
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/coldchain/vocab#ProductLot"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "lot number"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#containsLot",
+    "@type": [
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/coldchain/vocab#Shipment"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "contains lot"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://example.org/coldchain/vocab#ProductLot"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/id/product/vaccine-b",
+    "@type": [
+      "http://example.org/coldchain/vocab#Vaccine"
+    ],
+    "http://example.org/coldchain/vocab#requiredRange": [
+      {
+        "@id": "http://example.org/coldchain/id/range/minus25to-15C"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Vaccine-B"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/id/container/C8",
+    "@type": [
+      "http://example.org/coldchain/vocab#RefrigeratedContainer"
+    ],
+    "http://example.org/coldchain/vocab#code": [
+      {
+        "@value": "C8"
+      }
+    ],
+    "http://example.org/coldchain/vocab#fittedWith": [
+      {
+        "@id": "http://example.org/coldchain/id/sensor/T92"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Container C8"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#eventOf",
+    "@type": [
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/coldchain/vocab#LogisticsEvent"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "event of"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://example.org/coldchain/vocab#Shipment"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#destination",
+    "@type": [
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/coldchain/vocab#Shipment"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "destination"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://example.org/coldchain/vocab#Facility"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/id/product/vaccine-a",
+    "@type": [
+      "http://example.org/coldchain/vocab#Vaccine"
+    ],
+    "http://example.org/coldchain/vocab#requiredRange": [
+      {
+        "@id": "http://example.org/coldchain/id/range/2to8C"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Vaccine-A"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/coldchain/vocab#doseCount",
+    "@type": [
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/coldchain/vocab#ProductLot"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "dose count"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    ]
+  }
+]

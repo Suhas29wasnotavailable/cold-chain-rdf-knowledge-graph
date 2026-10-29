@@ -17,6 +17,8 @@ jobs:
         run: python validate.py
       - name: Committed results.txt matches a fresh run
         run: git diff --exit-code results.txt
+      - name: N-Triples / JSON-LD / RDF/XML exports match the Turtle source
+        run: python export_formats.py --check
       - name: SHACL shapes
         run: python shacl_check.py
       - name: Competency-question answers

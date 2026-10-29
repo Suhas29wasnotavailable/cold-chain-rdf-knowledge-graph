@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:cc="http://example.org/coldchain/vocab#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#serialNumber">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:label xml:lang="en">serial number</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/coldchain/vocab#Sensor"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/id/observation/T91-20261005T1000">
+    <rdf:type rdf:resource="http://example.org/coldchain/vocab#TemperatureObservation"/>
+    <rdfs:label xml:lang="en">T91 reading 10:00</rdfs:label>
+    <cc:madeBySensor rdf:resource="http://example.org/coldchain/id/sensor/T91"/>
+    <cc:observedContainer rdf:resource="http://example.org/coldchain/id/container/C7"/>
+    <cc:resultTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-05T10:00:00+05:30</cc:resultTime>
+    <cc:celsiusValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5.1</cc:celsiusValue>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/id/observation/T92-20261006T0800">
+    <rdf:type rdf:resource="http://example.org/coldchain/vocab#TemperatureObservation"/>
+    <rdfs:label xml:lang="en">T92 reading 08:00</rdfs:label>
+    <cc:madeBySensor rdf:resource="http://example.org/coldchain/id/sensor/T92"/>
+    <cc:observedContainer rdf:resource="http://example.org/coldchain/id/container/C8"/>
+    <cc:resultTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-06T08:00:00+05:30</cc:resultTime>
+    <cc:celsiusValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-20.4</cc:celsiusValue>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/id/observation/T91-20261005T1200">
+    <rdf:type rdf:resource="http://example.org/coldchain/vocab#TemperatureObservation"/>
+    <rdfs:label xml:lang="en">T91 reading 12:00</rdfs:label>
+    <cc:madeBySensor rdf:resource="http://example.org/coldchain/id/sensor/T91"/>
+    <cc:observedContainer rdf:resource="http://example.org/coldchain/id/container/C7"/>
+    <cc:resultTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-05T12:00:00+05:30</cc:resultTime>
+    <cc:celsiusValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">6.0</cc:celsiusValue>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/id/lot/VA-2609-01">
+    <rdf:type rdf:resource="http://example.org/coldchain/vocab#ProductLot"/>
+    <rdfs:label xml:lang="en">Lot VA-2609-01</rdfs:label>
+    <cc:ofProduct rdf:resource="http://example.org/coldchain/id/product/vaccine-a"/>
+    <cc:lotNumber>VA-2609-01</cc:lotNumber>
+    <cc:doseCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2400</cc:doseCount>
+    <cc:expiryDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2027-09-30</cc:expiryDate>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/id/warehouse/BLR-N">
+    <rdf:type rdf:resource="http://example.org/coldchain/vocab#Warehouse"/>
+    <rdfs:label xml:lang="en">Bengaluru-North</rdfs:label>
+    <cc:code>BLR-N</cc:code>
+    <cc:city>Bengaluru</cc:city>
+    <cc:operatedBy rdf:resource="http://example.org/coldchain/id/organisation/medivault"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/id/event/S102-dispatch">
+    <rdf:type rdf:resource="http://example.org/coldchain/vocab#DispatchEvent"/>
+    <rdfs:label xml:lang="en">S102 dispatched from Mysuru-Central</rdfs:label>
+    <cc:eventOf rdf:resource="http://example.org/coldchain/id/shipment/S102"/>
+    <cc:atFacility rdf:resource="http://example.org/coldchain/id/warehouse/MYS-C"/>
+    <cc:eventTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-06T07:30:00+05:30</cc:eventTime>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#fittedWith">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:label xml:lang="en">fitted with</rdfs:label>
+    <rdfs:comment xml:lang="en">A sensor installed in a container.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/coldchain/vocab#Container"/>
+    <rdfs:range rdf:resource="http://example.org/coldchain/vocab#Sensor"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#ProductLot">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:label xml:lang="en">Product lot</rdfs:label>
+    <rdfs:comment xml:lang="en">A physical, manufactured batch of a product, identified by a lot number.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <rdfs:label xml:lang="en">Cold-Chain Shipment Vocabulary</rdfs:label>
+    <rdfs:comment xml:lang="en">A small RDFS vocabulary for vaccine shipments, containers, sensors, temperature readings, warehouses and delivery events.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#code">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:label xml:lang="en">business code</rdfs:label>
+    <rdfs:comment xml:lang="en">The identifier used by the business (S101, C7, T91 ...), kept as a literal next to the IRI.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#expiryDate">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:label xml:lang="en">expiry date</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/coldchain/vocab#ProductLot"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/id/observation/T91-20261005T0730">
+    <rdf:type rdf:resource="http://example.org/coldchain/vocab#TemperatureObservation"/>
+    <rdfs:label xml:lang="en">T91 reading 07:30 (pre-cooling)</rdfs:label>
+    <cc:madeBySensor rdf:resource="http://example.org/coldchain/id/sensor/T91"/>
+    <cc:observedContainer rdf:resource="http://example.org/coldchain/id/container/C7"/>
+    <cc:resultTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-05T07:30:00+05:30</cc:resultTime>
+    <cc:celsiusValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.6</cc:celsiusValue>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/id/observation/T91-20261005T0900">
+    <rdf:type rdf:resource="http://example.org/coldchain/vocab#TemperatureObservation"/>
+    <rdfs:label xml:lang="en">T91 reading 09:00</rdfs:label>
+    <cc:madeBySensor rdf:resource="http://example.org/coldchain/id/sensor/T91"/>
+    <cc:observedContainer rdf:resource="http://example.org/coldchain/id/container/C7"/>
+    <cc:resultTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-05T09:00:00+05:30</cc:resultTime>
+    <cc:celsiusValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">4.2</cc:celsiusValue>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/id/event/S101-arrival">
+    <rdf:type rdf:resource="http://example.org/coldchain/vocab#ArrivalEvent"/>
+    <rdfs:label xml:lang="en">S101 arrived at Mysuru-Central</rdfs:label>
+    <cc:eventOf rdf:resource="http://example.org/coldchain/id/shipment/S101"/>
+    <cc:atFacility rdf:resource="http://example.org/coldchain/id/warehouse/MYS-C"/>
+    <cc:eventTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-05T12:30:00+05:30</cc:eventTime>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#eventOf">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:label xml:lang="en">event of</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/coldchain/vocab#LogisticsEvent"/>
+    <rdfs:range rdf:resource="http://example.org/coldchain/vocab#Shipment"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#Product">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:label xml:lang="en">Product</rdfs:label>
+    <rdfs:comment xml:lang="en">A product type as listed in a catalogue (not a physical quantity).</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#Shipment">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:label xml:lang="en">Shipment</rdfs:label>
+    <rdfs:comment xml:lang="en">A consignment of one or more product lots moved from an origin to a destination.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#ArrivalEvent">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:subClassOf rdf:resource="http://example.org/coldchain/vocab#LogisticsEvent"/>
+    <rdfs:label xml:lang="en">Arrival event</rdfs:label>
+    <rdfs:comment xml:lang="en">A shipment reaches its destination facility.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#destination">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:label xml:lang="en">destination</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/coldchain/vocab#Shipment"/>
+    <rdfs:range rdf:resource="http://example.org/coldchain/vocab#Facility"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/id/event/S102-arrival">
+    <rdf:type rdf:resource="http://example.org/coldchain/vocab#ArrivalEvent"/>
+    <rdfs:label xml:lang="en">S102 arrived at Bengaluru-North</rdfs:label>
+    <cc:eventOf rdf:resource="http://example.org/coldchain/id/shipment/S102"/>
+    <cc:atFacility rdf:resource="http://example.org/coldchain/id/warehouse/BLR-N"/>
+    <cc:eventTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-06T11:45:00+05:30</cc:eventTime>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#eventTime">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:label xml:lang="en">event time</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/coldchain/vocab#LogisticsEvent"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#ofProduct">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:label xml:lang="en">of product</rdfs:label>
+    <rdfs:comment xml:lang="en">The product type that a physical lot is an instance of.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/coldchain/vocab#ProductLot"/>
+    <rdfs:range rdf:resource="http://example.org/coldchain/vocab#Product"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/id/lot/VB-2609-07">
+    <rdf:type rdf:resource="http://example.org/coldchain/vocab#ProductLot"/>
+    <rdfs:label xml:lang="en">Lot VB-2609-07</rdfs:label>
+    <cc:ofProduct rdf:resource="http://example.org/coldchain/id/product/vaccine-b"/>
+    <cc:lotNumber>VB-2609-07</cc:lotNumber>
+    <cc:doseCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1500</cc:doseCount>
+    <cc:expiryDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2027-03-31</cc:expiryDate>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#minTemperature">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:label xml:lang="en">minimum temperature</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/coldchain/vocab#TemperatureRange"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#atFacility">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:label xml:lang="en">at facility</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/coldchain/vocab#LogisticsEvent"/>
+    <rdfs:range rdf:resource="http://example.org/coldchain/vocab#Facility"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/id/range/2to8C">
+    <rdf:type rdf:resource="http://example.org/coldchain/vocab#TemperatureRange"/>
+    <rdfs:label xml:lang="en">Refrigerated, +2 to +8 °C</rdfs:label>
+    <cc:minTemperature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2.0</cc:minTemperature>
+    <cc:maxTemperature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">8.0</cc:maxTemperature>
+    <cc:temperatureUnit rdf:resource="http://qudt.org/vocab/unit/DEG_C"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/id/observation/T92-20261006T1100">
+    <rdf:type rdf:resource="http://example.org/coldchain/vocab#TemperatureObservation"/>
+    <rdfs:label xml:lang="en">T92 reading 11:00</rdfs:label>
+    <cc:madeBySensor rdf:resource="http://example.org/coldchain/id/sensor/T92"/>
+    <cc:observedContainer rdf:resource="http://example.org/coldchain/id/container/C8"/>
+    <cc:resultTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-06T11:00:00+05:30</cc:resultTime>
+    <cc:celsiusValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-19.9</cc:celsiusValue>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#responsibleWarehouse">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:label xml:lang="en">responsible warehouse</rdfs:label>
+    <rdfs:comment xml:lang="en">The warehouse accountable for the shipment's cold-chain record.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/coldchain/vocab#Shipment"/>
+    <rdfs:range rdf:resource="http://example.org/coldchain/vocab#Warehouse"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/id/shipment/S101">
+    <rdf:type rdf:resource="http://example.org/coldchain/vocab#Shipment"/>
+    <rdfs:label xml:lang="en">Shipment S101</rdfs:label>
+    <cc:code>S101</cc:code>
+    <cc:containsLot rdf:resource="http://example.org/coldchain/id/lot/VA-2609-01"/>
+    <cc:transportedIn rdf:resource="http://example.org/coldchain/id/container/C7"/>
+    <cc:carriedBy rdf:resource="http://example.org/coldchain/id/organisation/frostline"/>
+    <cc:origin rdf:resource="http://example.org/coldchain/id/warehouse/BLR-N"/>
+    <cc:destination rdf:resource="http://example.org/coldchain/id/warehouse/MYS-C"/>
+    <cc:responsibleWarehouse rdf:resource="http://example.org/coldchain/id/warehouse/BLR-N"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/id/event/S101-dispatch">
+    <rdf:type rdf:resource="http://example.org/coldchain/vocab#DispatchEvent"/>
+    <rdfs:label xml:lang="en">S101 dispatched from Bengaluru-North</rdfs:label>
+    <cc:eventOf rdf:resource="http://example.org/coldchain/id/shipment/S101"/>
+    <cc:atFacility rdf:resource="http://example.org/coldchain/id/warehouse/BLR-N"/>
+    <cc:eventTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-05T08:00:00+05:30</cc:eventTime>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/id/container/C7">
+    <rdf:type rdf:resource="http://example.org/coldchain/vocab#RefrigeratedContainer"/>
+    <rdfs:label xml:lang="en">Container C7</rdfs:label>
+    <cc:code>C7</cc:code>
+    <cc:fittedWith rdf:resource="http://example.org/coldchain/id/sensor/T91"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/id/sensor/T91">
+    <rdf:type rdf:resource="http://example.org/coldchain/vocab#TemperatureSensor"/>
+    <rdfs:label xml:lang="en">Sensor T91</rdfs:label>
+    <cc:code>T91</cc:code>
+    <cc:serialNumber>TS-91-44871</cc:serialNumber>
+    <cc:lastCalibrated rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-08-14</cc:lastCalibrated>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#TemperatureObservation">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/sosa/Observation"/>
+    <rdfs:label xml:lang="en">Temperature observation</rdfs:label>
+    <rdfs:comment xml:lang="en">A single temperature reading taken by a sensor inside a container at a time.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/id/range/minus25to-15C">
+    <rdf:type rdf:resource="http://example.org/coldchain/vocab#TemperatureRange"/>
+    <rdfs:label xml:lang="en">Frozen, -25 to -15 °C</rdfs:label>
+    <cc:minTemperature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-25.0</cc:minTemperature>
+    <cc:maxTemperature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-15.0</cc:maxTemperature>
+    <cc:temperatureUnit rdf:resource="http://qudt.org/vocab/unit/DEG_C"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#containsLot">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:label xml:lang="en">contains lot</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/coldchain/vocab#Shipment"/>
+    <rdfs:range rdf:resource="http://example.org/coldchain/vocab#ProductLot"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#carriedBy">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:label xml:lang="en">carried by</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/coldchain/vocab#Shipment"/>
+    <rdfs:range rdf:resource="http://example.org/coldchain/vocab#Carrier"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#lotNumber">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:label xml:lang="en">lot number</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/coldchain/vocab#ProductLot"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#observedContainer">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/ns/sosa/hasFeatureOfInterest"/>
+    <rdfs:label xml:lang="en">observed container</rdfs:label>
+    <rdfs:comment xml:lang="en">The container whose internal temperature was measured.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/coldchain/vocab#TemperatureObservation"/>
+    <rdfs:range rdf:resource="http://example.org/coldchain/vocab#Container"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/id/warehouse/MYS-C">
+    <rdf:type rdf:resource="http://example.org/coldchain/vocab#Warehouse"/>
+    <rdfs:label xml:lang="en">Mysuru-Central</rdfs:label>
+    <cc:code>MYS-C</cc:code>
+    <cc:city>Mysuru</cc:city>
+    <cc:operatedBy rdf:resource="http://example.org/coldchain/id/organisation/medivault"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#celsiusValue">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:label xml:lang="en">value in degrees Celsius</rdfs:label>
+    <rdfs:comment xml:lang="en">The measured temperature; the unit is fixed by the property name.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/coldchain/vocab#TemperatureObservation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/id/observation/T91-20261005T1100">
+    <rdf:type rdf:resource="http://example.org/coldchain/vocab#TemperatureObservation"/>
+    <rdfs:label xml:lang="en">T91 reading 11:00</rdfs:label>
+    <cc:madeBySensor rdf:resource="http://example.org/coldchain/id/sensor/T91"/>
+    <cc:observedContainer rdf:resource="http://example.org/coldchain/id/container/C7"/>
+    <cc:resultTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-05T11:00:00+05:30</cc:resultTime>
+    <cc:celsiusValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">9.4</cc:celsiusValue>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/id/sensor/T92">
+    <rdf:type rdf:resource="http://example.org/coldchain/vocab#TemperatureSensor"/>
+    <rdfs:label xml:lang="en">Sensor T92</rdfs:label>
+    <cc:code>T92</cc:code>
+    <cc:serialNumber>TS-92-44902</cc:serialNumber>
+    <cc:lastCalibrated rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-09-02</cc:lastCalibrated>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#Warehouse">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:subClassOf rdf:resource="http://example.org/coldchain/vocab#Facility"/>
+    <rdfs:label xml:lang="en">Warehouse</rdfs:label>
+    <rdfs:comment xml:lang="en">A temperature-controlled storage facility.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#DispatchEvent">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:subClassOf rdf:resource="http://example.org/coldchain/vocab#LogisticsEvent"/>
+    <rdfs:label xml:lang="en">Dispatch event</rdfs:label>
+    <rdfs:comment xml:lang="en">A shipment leaves its origin facility.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#Distributor">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:subClassOf rdf:resource="http://example.org/coldchain/vocab#Organisation"/>
+    <rdfs:label xml:lang="en">Distributor</rdfs:label>
+    <rdfs:comment xml:lang="en">An organisation that owns stock and operates warehouses.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/id/product/vaccine-b">
+    <rdf:type rdf:resource="http://example.org/coldchain/vocab#Vaccine"/>
+    <rdfs:label xml:lang="en">Vaccine-B</rdfs:label>
+    <cc:requiredRange rdf:resource="http://example.org/coldchain/id/range/minus25to-15C"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#Organisation">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:label xml:lang="en">Organisation</rdfs:label>
+    <rdfs:comment xml:lang="en">A company or body that takes part in the cold chain.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#RefrigeratedContainer">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:subClassOf rdf:resource="http://example.org/coldchain/vocab#Container"/>
+    <rdfs:label xml:lang="en">Refrigerated container</rdfs:label>
+    <rdfs:comment xml:lang="en">A container with active cooling.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#Carrier">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:subClassOf rdf:resource="http://example.org/coldchain/vocab#Organisation"/>
+    <rdfs:label xml:lang="en">Carrier</rdfs:label>
+    <rdfs:comment xml:lang="en">An organisation that physically transports shipments.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#city">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:label xml:lang="en">city</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/coldchain/vocab#Facility"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/id/container/C8">
+    <rdf:type rdf:resource="http://example.org/coldchain/vocab#RefrigeratedContainer"/>
+    <rdfs:label xml:lang="en">Container C8</rdfs:label>
+    <cc:code>C8</cc:code>
+    <cc:fittedWith rdf:resource="http://example.org/coldchain/id/sensor/T92"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/id/observation/T92-20261006T0930">
+    <rdf:type rdf:resource="http://example.org/coldchain/vocab#TemperatureObservation"/>
+    <rdfs:label xml:lang="en">T92 reading 09:30</rdfs:label>
+    <cc:madeBySensor rdf:resource="http://example.org/coldchain/id/sensor/T92"/>
+    <cc:observedContainer rdf:resource="http://example.org/coldchain/id/container/C8"/>
+    <cc:resultTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-10-06T09:30:00+05:30</cc:resultTime>
+    <cc:celsiusValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-18.7</cc:celsiusValue>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#Facility">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:label xml:lang="en">Facility</rdfs:label>
+    <rdfs:comment xml:lang="en">A physical site where goods are stored or handled.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/id/shipment/S102">
+    <rdf:type rdf:resource="http://example.org/coldchain/vocab#Shipment"/>
+    <rdfs:label xml:lang="en">Shipment S102</rdfs:label>
+    <cc:code>S102</cc:code>
+    <cc:containsLot rdf:resource="http://example.org/coldchain/id/lot/VB-2609-07"/>
+    <cc:transportedIn rdf:resource="http://example.org/coldchain/id/container/C8"/>
+    <cc:carriedBy rdf:resource="http://example.org/coldchain/id/organisation/frostline"/>
+    <cc:origin rdf:resource="http://example.org/coldchain/id/warehouse/MYS-C"/>
+    <cc:destination rdf:resource="http://example.org/coldchain/id/warehouse/BLR-N"/>
+    <cc:responsibleWarehouse rdf:resource="http://example.org/coldchain/id/warehouse/MYS-C"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/id/product/vaccine-a">
+    <rdf:type rdf:resource="http://example.org/coldchain/vocab#Vaccine"/>
+    <rdfs:label xml:lang="en">Vaccine-A</rdfs:label>
+    <cc:requiredRange rdf:resource="http://example.org/coldchain/id/range/2to8C"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#Vaccine">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:subClassOf rdf:resource="http://example.org/coldchain/vocab#Product"/>
+    <rdfs:label xml:lang="en">Vaccine</rdfs:label>
+    <rdfs:comment xml:lang="en">A vaccine product type with a required storage temperature range.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/id/organisation/frostline">
+    <rdf:type rdf:resource="http://example.org/coldchain/vocab#Carrier"/>
+    <rdfs:label xml:lang="en">FrostLine Logistics</rdfs:label>
+    <cc:name>FrostLine Logistics</cc:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#TemperatureRange">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:label xml:lang="en">Temperature range</rdfs:label>
+    <rdfs:comment xml:lang="en">A permitted range with a minimum, a maximum and a unit.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#lastCalibrated">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:label xml:lang="en">last calibrated</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/coldchain/vocab#Sensor"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#origin">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:label xml:lang="en">origin</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/coldchain/vocab#Shipment"/>
+    <rdfs:range rdf:resource="http://example.org/coldchain/vocab#Facility"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#LogisticsEvent">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:label xml:lang="en">Logistics event</rdfs:label>
+    <rdfs:comment xml:lang="en">Something that happens to a shipment at a place and time.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#transportedIn">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:label xml:lang="en">transported in</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/coldchain/vocab#Shipment"/>
+    <rdfs:range rdf:resource="http://example.org/coldchain/vocab#Container"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#temperatureUnit">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:label xml:lang="en">temperature unit</rdfs:label>
+    <rdfs:comment xml:lang="en">Unit of the range values, as a QUDT unit IRI.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/coldchain/vocab#TemperatureRange"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#maxTemperature">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:label xml:lang="en">maximum temperature</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/coldchain/vocab#TemperatureRange"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#Sensor">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/sosa/Sensor"/>
+    <rdfs:label xml:lang="en">Sensor</rdfs:label>
+    <rdfs:comment xml:lang="en">A device that produces observations.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#doseCount">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:label xml:lang="en">dose count</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/coldchain/vocab#ProductLot"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#requiredRange">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:label xml:lang="en">required temperature range</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/coldchain/vocab#Product"/>
+    <rdfs:range rdf:resource="http://example.org/coldchain/vocab#TemperatureRange"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#TemperatureSensor">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:subClassOf rdf:resource="http://example.org/coldchain/vocab#Sensor"/>
+    <rdfs:label xml:lang="en">Temperature sensor</rdfs:label>
+    <rdfs:comment xml:lang="en">A sensor that records temperature.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#madeBySensor">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/ns/sosa/madeBySensor"/>
+    <rdfs:label xml:lang="en">made by sensor</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/coldchain/vocab#TemperatureObservation"/>
+    <rdfs:range rdf:resource="http://example.org/coldchain/vocab#Sensor"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#operatedBy">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:label xml:lang="en">operated by</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/coldchain/vocab#Warehouse"/>
+    <rdfs:range rdf:resource="http://example.org/coldchain/vocab#Distributor"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#resultTime">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/ns/sosa/resultTime"/>
+    <rdfs:label xml:lang="en">result time</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/coldchain/vocab#TemperatureObservation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/id/organisation/medivault">
+    <rdf:type rdf:resource="http://example.org/coldchain/vocab#Distributor"/>
+    <rdfs:label xml:lang="en">MediVault Distribution</rdfs:label>
+    <cc:name>MediVault Distribution Pvt Ltd</cc:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#name">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:label xml:lang="en">name</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/coldchain/vocab#Container">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:label xml:lang="en">Container</rdfs:label>
+    <rdfs:comment xml:lang="en">A reusable physical transport unit.</rdfs:comment>
+  </rdf:Description>
+</rdf:RDF>
