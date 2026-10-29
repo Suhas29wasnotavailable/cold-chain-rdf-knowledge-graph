@@ -69,3 +69,11 @@ def test_cq7_excursion_is_bounded_by_in_range_readings(graph):
     (shipment, at, value, last_ok, next_ok), = answer(graph, "Q9")
     assert (shipment, float(value)) == ("S101", 9.4)
     assert "T10:00" in last_ok and "T11:00" in at and "T12:00" in next_ok
+
+
+def test_csv_export(tmp_path, capsys):
+    assert validate.main(["--csv", str(tmp_path)]) == 0
+    capsys.readouterr()
+    assert (tmp_path / "Q4.csv").read_text().splitlines() == [
+        "shipment,sensor,time,value,min,max", "S101,T91,2026-10-05T11:00:00+05:30,9.4,2.0,8.0"]
+    assert (tmp_path / "Q7_inference.csv").read_text().count("\n") == 15
