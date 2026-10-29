@@ -28,7 +28,7 @@ BUILTIN = (str(RDF), str(RDFS), str(OWL))
 
 # Expected row counts (see the "Expected:" comment above each query).
 # Q7 runs twice: without and with RDFS inference.
-EXPECTED_ROWS = {"Q1": 1, "Q2": 2, "Q3": 2, "Q4": 1, "Q5": 2, "Q6": 2, "Q7": 0, "Q7+inference": 14, "Q8": 0}
+EXPECTED_ROWS = {"Q1": 1, "Q2": 2, "Q3": 2, "Q4": 1, "Q5": 2, "Q6": 2, "Q7": 0, "Q7+inference": 14, "Q8": 0, "Q9": 1}
 
 out_lines = []
 

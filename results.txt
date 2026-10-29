@@ -63,4 +63,9 @@
     problem | thing
     (0 rows; expected 0: OK)
 
-[5] Expected row counts: 9/9 match
+=== Q9 CQ7 - For each in-transit excursion, what are the last in-range reading before it and the first in-range reading after it?
+    shipment | excursionTime | value | lastOkTime | nextOkTime
+    S101 | 2026-10-05T11:00:00+05:30 | 9.4 | 2026-10-05T10:00:00+05:30 | 2026-10-05T12:00:00+05:30
+    (1 rows; expected 1: OK)
+
+[5] Expected row counts: 10/10 match

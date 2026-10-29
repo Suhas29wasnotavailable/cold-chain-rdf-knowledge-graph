@@ -63,3 +63,9 @@ def test_data_quality_query_catches_a_broken_range(graph):
         DELETE { ?r cc:minTemperature ?lo } INSERT { ?r cc:minTemperature 99.0 }
         WHERE { ?r cc:minTemperature ?lo } """)
     assert {r[0] for r in validate.run(broken, QUERIES["Q8"])[0]} == {"min not below max"}
+
+
+def test_cq7_excursion_is_bounded_by_in_range_readings(graph):
+    (shipment, at, value, last_ok, next_ok), = answer(graph, "Q9")
+    assert (shipment, float(value)) == ("S101", 9.4)
+    assert "T10:00" in last_ok and "T11:00" in at and "T12:00" in next_ok
