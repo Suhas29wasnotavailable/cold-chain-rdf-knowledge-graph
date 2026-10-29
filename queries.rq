@@ -132,3 +132,37 @@ SELECT ?problem ?thing WHERE {
     BIND ("min not below max" AS ?problem)
   }
 }
+
+#### Q9 CQ7 - For each in-transit excursion, what are the last in-range reading before it and the first in-range reading after it?
+# This bounds how long the container was out of range.
+# Expected: 1 row - S101, excursion at 11:00 (9.4 C), last OK 10:00 (5.1 C), next OK 12:00 (6.0 C).
+SELECT ?shipment ?excursionTime ?value ?lastOkTime ?nextOkTime WHERE {
+  ?s cc:code ?shipment ;
+     cc:transportedIn ?c ;
+     cc:containsLot/cc:ofProduct/cc:requiredRange ?r .
+  ?r cc:minTemperature ?min ; cc:maxTemperature ?max .
+  ?d a cc:DispatchEvent ; cc:eventOf ?s ; cc:eventTime ?t0 .
+  ?a a cc:ArrivalEvent  ; cc:eventOf ?s ; cc:eventTime ?t1 .
+  ?o cc:observedContainer ?c ; cc:resultTime ?excursionTime ; cc:celsiusValue ?value .
+  FILTER (?excursionTime >= ?t0 && ?excursionTime <= ?t1)
+  FILTER (?value < ?min || ?value > ?max)
+  OPTIONAL {
+    SELECT ?c ?excursionTime (MAX(?tb) AS ?lastOkTime) WHERE {
+      ?ob cc:observedContainer ?c ; cc:resultTime ?tb ; cc:celsiusValue ?vb .
+      ?o2 cc:observedContainer ?c ; cc:resultTime ?excursionTime .
+      ?sh cc:transportedIn ?c ; cc:containsLot/cc:ofProduct/cc:requiredRange ?rb .
+      ?rb cc:minTemperature ?minb ; cc:maxTemperature ?maxb .
+      FILTER (?tb < ?excursionTime && ?vb >= ?minb && ?vb <= ?maxb)
+    } GROUP BY ?c ?excursionTime
+  }
+  OPTIONAL {
+    SELECT ?c ?excursionTime (MIN(?ta) AS ?nextOkTime) WHERE {
+      ?oa cc:observedContainer ?c ; cc:resultTime ?ta ; cc:celsiusValue ?va .
+      ?o3 cc:observedContainer ?c ; cc:resultTime ?excursionTime .
+      ?sh cc:transportedIn ?c ; cc:containsLot/cc:ofProduct/cc:requiredRange ?ra .
+      ?ra cc:minTemperature ?mina ; cc:maxTemperature ?maxa .
+      FILTER (?ta > ?excursionTime && ?va >= ?mina && ?va <= ?maxa)
+    } GROUP BY ?c ?excursionTime
+  }
+}
+ORDER BY ?excursionTime
