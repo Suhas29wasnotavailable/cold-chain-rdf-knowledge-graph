@@ -29,3 +29,13 @@ def test_shipment_without_container_is_rejected():
     g = data()
     g.remove((URIRef("http://example.org/coldchain/id/shipment/S102"), URIRef(CC + "transportedIn"), None))
     assert not shacl_check.check(g)[0]
+
+
+def test_in_transit_excursion_is_a_warning_not_a_violation():
+    g = data()
+    assert shacl_check.check(g)[0]
+    assert shacl_check.warnings(g) == ["In-transit temperature excursion: 9.4 C outside 2.0..8.0 for shipment S101"]
+
+
+def test_pre_dispatch_reading_is_not_reported():
+    assert not any("1.6" in m for m in shacl_check.warnings(data()))
