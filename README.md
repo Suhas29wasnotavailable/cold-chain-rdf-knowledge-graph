@@ -13,7 +13,7 @@ An RDF graph with a small RDFS vocabulary for vaccine shipments (S101, S102), re
 | File | Description |
 |---|---|
 | `cold_chain.ttl` | RDFS vocabulary (18 classes, 28 properties) and instance data in Turtle. 334 triples |
-| `queries.rq` | 9 SPARQL queries: triple count, CQ1–CQ7 and a data-quality validation query, each with its expected result |
+| `queries.rq` | 10 SPARQL queries: triple count, CQ1–CQ8 and a data-quality validation query, each with its expected result |
 | `validate.py` | Parses the file, checks the vocabulary and domain/range, computes the RDFS closure, runs every query and checks each row count |
 | `shapes.ttl` | SHACL shapes: cardinalities, datatypes, value bounds and min < max, which RDFS cannot express |
 | `shacl_check.py` | Validates the data against `shapes.ttl` with pySHACL (RDFS inference on) |
@@ -66,6 +66,7 @@ pip install -r requirements-dev.txt && pytest   # checks the CQ answers
 | Q7 | CQ6 – RDFS inference | 0 rows without inference, 14 with inference |
 | Q8 | Data-quality validation | 0 rows |
 | Q9 | CQ7 – last in-range reading before and first after each excursion | 1 row: S101, 10:00 → 11:00 (9.4 °C) → 12:00, so out of range for at most 2 h |
+| Q10 | CQ8 – in-transit reading count, min, max, mean and out-of-range count per shipment | S101: 4 readings, 4.2–9.4 °C, mean 6.18, 1 out of range; S102: 3 readings, −20.4 to −18.7 °C, 0 out of range |
 
 ## Acknowledgements
 - W3C RDF 1.1 Turtle, RDF Schema 1.1, SOSA/SSN; QUDT units vocabulary.

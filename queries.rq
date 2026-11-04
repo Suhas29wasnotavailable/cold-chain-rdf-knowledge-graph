@@ -166,3 +166,22 @@ SELECT ?shipment ?excursionTime ?value ?lastOkTime ?nextOkTime WHERE {
   }
 }
 ORDER BY ?excursionTime
+
+#### Q10 CQ8 - What were the in-transit temperature statistics for each shipment?
+# Readings are matched to a shipment by its container and dispatch-arrival window.
+# The 07:30 pre-cooling reading of C7 is outside S101's window and not counted.
+# Expected: S101 4 readings, 4.2..9.4 C, mean 6.18, 1 out of range;
+#           S102 3 readings, -20.4..-18.7 C, mean -19.67, 0 out of range.
+SELECT ?shipment (COUNT(?v) AS ?readings) (MIN(?v) AS ?minC) (MAX(?v) AS ?maxC) (ROUND(AVG(?v) * 100) / 100 AS ?meanC)
+       (SUM(IF(?v < ?min || ?v > ?max, 1, 0)) AS ?outOfRange) WHERE {
+  ?s cc:code ?shipment ;
+     cc:transportedIn ?c ;
+     cc:containsLot/cc:ofProduct/cc:requiredRange ?r .
+  ?r cc:minTemperature ?min ; cc:maxTemperature ?max .
+  ?d a cc:DispatchEvent ; cc:eventOf ?s ; cc:eventTime ?t0 .
+  ?a a cc:ArrivalEvent  ; cc:eventOf ?s ; cc:eventTime ?t1 .
+  ?o cc:observedContainer ?c ; cc:resultTime ?t ; cc:celsiusValue ?v .
+  FILTER (?t >= ?t0 && ?t <= ?t1)
+}
+GROUP BY ?shipment
+ORDER BY ?shipment

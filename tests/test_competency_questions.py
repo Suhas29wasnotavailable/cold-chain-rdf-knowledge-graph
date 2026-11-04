@@ -77,3 +77,8 @@ def test_csv_export(tmp_path, capsys):
     assert (tmp_path / "Q4.csv").read_text().splitlines() == [
         "shipment,sensor,time,value,min,max", "S101,T91,2026-10-05T11:00:00+05:30,9.4,2.0,8.0"]
     assert (tmp_path / "Q7_inference.csv").read_text().count("\n") == 15
+
+
+def test_cq8_transit_statistics(graph):
+    stats = {r[0]: (int(r[1]), float(r[2]), float(r[3]), float(r[4]), int(r[5])) for r in answer(graph, "Q10")}
+    assert stats == {"S101": (4, 4.2, 9.4, 6.18, 1), "S102": (3, -20.4, -18.7, -19.67, 0)}
