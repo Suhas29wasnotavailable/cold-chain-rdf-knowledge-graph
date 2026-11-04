@@ -46,3 +46,25 @@ ccsh:EventShape a sh:NodeShape ;
     sh:property [ sh:path cc:eventOf ; sh:class cc:Shipment ; sh:minCount 1 ; sh:maxCount 1 ] ;
     sh:property [ sh:path cc:atFacility ; sh:class cc:Warehouse ; sh:minCount 1 ; sh:maxCount 1 ] ;
     sh:property [ sh:path cc:eventTime ; sh:datatype xsd:dateTime ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+# A reading outside the product's permitted range while the shipment is in
+# transit is not malformed data, it is a real-world event worth reporting.
+# It is reported with severity sh:Warning, so the data still conforms.
+ccsh:ExcursionShape a sh:NodeShape ;
+    sh:targetClass cc:TemperatureObservation ;
+    sh:severity sh:Warning ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "In-transit temperature excursion: {?value} C outside {?min}..{?max} for shipment {?shipment}" ;
+        sh:prefixes [ sh:declare [ sh:prefix "cc" ; sh:namespace "http://example.org/coldchain/vocab#"^^xsd:anyURI ] ] ;
+        sh:select """
+            SELECT $this ?value ?min ?max ?shipment WHERE {
+              $this cc:observedContainer ?c ; cc:resultTime ?t ; cc:celsiusValue ?value .
+              ?s cc:transportedIn ?c ; cc:code ?shipment ;
+                 cc:containsLot/cc:ofProduct/cc:requiredRange ?r .
+              ?r cc:minTemperature ?min ; cc:maxTemperature ?max .
+              ?d a cc:DispatchEvent ; cc:eventOf ?s ; cc:eventTime ?t0 .
+              ?a a cc:ArrivalEvent ; cc:eventOf ?s ; cc:eventTime ?t1 .
+              FILTER (?t >= ?t0 && ?t <= ?t1 && (?value < ?min || ?value > ?max))
+            }"""
+    ] .
