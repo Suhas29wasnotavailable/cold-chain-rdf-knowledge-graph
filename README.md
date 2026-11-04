@@ -39,6 +39,7 @@ python validate.py --csv out       # also saves each query result as out/Qn.csv
 python draw_graph.py               # regenerates figures/s101_subgraph.png
 python shacl_check.py              # SHACL validation report
 pip install -r requirements-dev.txt && pytest   # checks the CQ answers
+make all PY=python                 # or run every check CI runs in one go
 ```
 
 `validate.py` exits with code 0 only if the vocabulary and domain/range checks pass and every query returns its expected number of rows.
