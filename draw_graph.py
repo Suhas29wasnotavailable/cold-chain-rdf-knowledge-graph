@@ -8,13 +8,9 @@ from pathlib import Path
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-from matplotlib.patches import FancyBboxPatch
-from rdflib import Graph, Literal, URIRef
+from rdflib import Graph, URIRef
 
 HERE = Path(__file__).parent
-g = Graph()
-g.parse(HERE / "cold_chain.ttl")
-nm = g.namespace_manager
 
 # node id -> (x, y, kind) ; kind: res | lit | cls
 N = {
@@ -58,54 +54,68 @@ E = [
 ]
 
 
-def expand(term):
-    return URIRef(nm.expand_curie(term))
-
-
-for s, p, o in E:  # check every drawn edge exists in the data
-    S, P = expand(s), expand(p)
-    if o.startswith('"'):
-        ok = any(str(v) == o.strip('"') for v in g.objects(S, P))
-    else:
-        ok = (S, P, expand(o)) in g
-    assert ok, f"edge not in graph: {s} {p} {o}"
+def missing_edges(g):
+    """Drawn edges that are not triples in g (should be empty)."""
+    expand = lambda term: URIRef(g.namespace_manager.expand_curie(term))
+    missing = []
+    for s, p, o in E:
+        S, P = expand(s), expand(p)
+        if o.startswith('"'):
+            ok = any(str(v) == o.strip('"') for v in g.objects(S, P))
+        else:
+            ok = (S, P, expand(o)) in g
+        if not ok:
+            missing.append((s, p, o))
+    return missing
 
 STYLE = {
     "res": dict(fc="#dbe9f7", ec="#2c5d8a"),
     "lit": dict(fc="#fff4d6", ec="#a8781c"),
     "cls": dict(fc="#e3f2e1", ec="#3f7a38"),
 }
-fig, ax = plt.subplots(figsize=(13, 9.2))
-ax.set_xlim(-7.6, 8.0)
-ax.set_ylim(-3.8, 7.0)
-ax.axis("off")
 
-for s, p, o in E:
-    x0, y0, _ = N[s]
-    x1, y1, _ = N[o]
-    ax.annotate("", xy=(x1, y1), xytext=(x0, y0),
-                arrowprops=dict(arrowstyle="-|>", color="#555", lw=1.2,
-                                shrinkA=24, shrinkB=24))
-    mx, my = (x0 + x1) / 2, (y0 + y1) / 2
-    ax.text(mx, my, p, fontsize=8.5, color="#333", ha="center", va="center",
-            bbox=dict(boxstyle="round,pad=0.15", fc="white", ec="none", alpha=0.9))
 
-for name, (x, y, kind) in N.items():
-    st = STYLE[kind]
-    style = "round,pad=0.35" if kind != "lit" else "square,pad=0.35"
-    ax.text(x, y, name, fontsize=9.5, ha="center", va="center",
-            family="monospace" if kind == "lit" else None,
-            bbox=dict(boxstyle=style, fc=st["fc"], ec=st["ec"], lw=1.4))
+def main():
+    g = Graph()
+    g.parse(HERE / "cold_chain.ttl")
+    missing = missing_edges(g)  # the figure must not show a triple that is not in the data
+    assert not missing, f"edges not in graph: {missing}"
 
-legend = [("IRI resource (instance)", "res"), ("Literal value", "lit"), ("Class (vocabulary)", "cls")]
-for i, (lab, k) in enumerate(legend):
-    ax.text(3.4, -2.2 - i * 0.5, "  " + lab, fontsize=9, va="center",
-            bbox=dict(boxstyle="round,pad=0.25", fc=STYLE[k]["fc"], ec=STYLE[k]["ec"]))
-ax.set_title("Subgraph of shipment S101 (18 triples from cold_chain.ttl)", fontsize=13)
+    fig, ax = plt.subplots(figsize=(13, 9.2))
+    ax.set_xlim(-7.6, 8.0)
+    ax.set_ylim(-3.8, 7.0)
+    ax.axis("off")
 
-out = HERE / "figures"
-out.mkdir(exist_ok=True)
-fig.tight_layout()
-fig.savefig(out / "s101_subgraph.png", dpi=170)
-fig.savefig(out / "s101_subgraph.svg")
-print("wrote figures/s101_subgraph.png and .svg")
+    for s, p, o in E:
+        x0, y0, _ = N[s]
+        x1, y1, _ = N[o]
+        ax.annotate("", xy=(x1, y1), xytext=(x0, y0),
+                    arrowprops=dict(arrowstyle="-|>", color="#555", lw=1.2,
+                                    shrinkA=24, shrinkB=24))
+        mx, my = (x0 + x1) / 2, (y0 + y1) / 2
+        ax.text(mx, my, p, fontsize=8.5, color="#333", ha="center", va="center",
+                bbox=dict(boxstyle="round,pad=0.15", fc="white", ec="none", alpha=0.9))
+
+    for name, (x, y, kind) in N.items():
+        st = STYLE[kind]
+        style = "round,pad=0.35" if kind != "lit" else "square,pad=0.35"
+        ax.text(x, y, name, fontsize=9.5, ha="center", va="center",
+                family="monospace" if kind == "lit" else None,
+                bbox=dict(boxstyle=style, fc=st["fc"], ec=st["ec"], lw=1.4))
+
+    legend = [("IRI resource (instance)", "res"), ("Literal value", "lit"), ("Class (vocabulary)", "cls")]
+    for i, (lab, k) in enumerate(legend):
+        ax.text(3.4, -2.2 - i * 0.5, "  " + lab, fontsize=9, va="center",
+                bbox=dict(boxstyle="round,pad=0.25", fc=STYLE[k]["fc"], ec=STYLE[k]["ec"]))
+    ax.set_title("Subgraph of shipment S101 (18 triples from cold_chain.ttl)", fontsize=13)
+
+    out = HERE / "figures"
+    out.mkdir(exist_ok=True)
+    fig.tight_layout()
+    fig.savefig(out / "s101_subgraph.png", dpi=170)
+    fig.savefig(out / "s101_subgraph.svg")
+    print("wrote figures/s101_subgraph.png and .svg")
+
+
+if __name__ == "__main__":
+    main()
